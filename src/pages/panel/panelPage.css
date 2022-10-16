@@ -1,0 +1,13 @@
+.letter {
+    text-transform: lowercase;
+    margin-top: 30px;
+    font-family: sans-serif;
+    letter-spacing: 0.2ch;
+    margin-bottom: 10px;
+    font-size: 2.7ch;
+    font-weight: 500;
+}
+
+.letter:first-letter {
+    text-transform: capitalize
+}

@@ -1,0 +1,22 @@
+.a-card-header > .MuiCardHeader-content {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.a-header-right-title {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: #a7a9ac;
+  font-size: 12px;
+  font-weight: bold;
+}
+.a-header-right-title > svg {
+  color: #ededed;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.a-header-right
+{
+  display: flex;
+}

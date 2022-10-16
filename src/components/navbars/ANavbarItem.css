@@ -1,0 +1,14 @@
+.a-nav-item.selected {
+    /* background: linear-gradient(90deg, rgba(255,88,0,1) 0%, rgba(198,6,8,1) 80%, rgba(198,6,8,1) 90%); */
+    color: linear-gradient(to right, #14163C 0%, #03217B 79%) !important;
+}
+
+.a-nav-item.selected>svg {
+    color: linear-gradient(to right, #14163C 0%, #03217B 79%);
+}
+
+.a-nav-item {
+    color: #fff !important;
+    text-align: center;
+    padding-left: 10px;
+}
