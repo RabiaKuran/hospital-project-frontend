@@ -4,7 +4,17 @@ import AButton from "../../components/buttons/AButton";
 import RedirectHelper from "../../helper/RedirectHelper";
 import AGridItem from "../../components/grids/AGridItem";
 import AGrid from "../../components/grids/AGrid";
-import { Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Link, TextField } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Link,
+  TextField,
+} from "@mui/material";
 import AHeaderLabel from "../../components/labels/header/AHeaderLabel";
 import { ColorPalette } from "../../theme/ColorPalette";
 import TokenService from "../../services/token/TokenService";
@@ -16,7 +26,6 @@ export default function SignInPage() {
   const [showError, setShowError] = useState(false);
 
   const handleSignIn = async () => {
-
     await TokenService.getToken(userName, password)
       .then((response) => {
         window.localStorage.setItem("token", response.accessToken);
@@ -32,7 +41,7 @@ export default function SignInPage() {
   const handleClose = () => {
     RedirectHelper.redirect("/");
     setShowError(false);
-  }
+  };
   return (
     <>
       <Dialog
@@ -41,7 +50,9 @@ export default function SignInPage() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"unifierapp.com says"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {"unifierapp.com says"}
+        </DialogTitle>
         <DialogContent>
           <Alert severity="info">
             <strong>Username or password is incorrect please try again.</strong>
@@ -54,14 +65,15 @@ export default function SignInPage() {
       <AGrid
         sx={{
           height: "105vh",
-          backgroundImage: `url(${"12.jpg"})`,
+          backgroundImage: `url(${"1.jpg"})`,
         }}
       >
         <AGridItem xs={1} />
-        <AGridItem xs={5}
+        <AGridItem
+          xs={5}
           sx={{
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <Box
@@ -78,37 +90,42 @@ export default function SignInPage() {
               color: "#FFFFFF",
               textTransform: "uppercase",
               letterSpacing: "0.4rem",
-              padding: 3
+              padding: 3,
             }}
           >
-
             <Box
-            component="form"
-            noValidate
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems: "center",
-              height: "100%",
-              width: "100%",
-            }}>
+              component="form"
+              noValidate
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
               <AHeaderLabel
-              text="Unifier"
-              size={5}
-              color={ColorPalette.white}
-              sx={{  height: "5%", fontSize: 52 }}
-            />
-            <p className="letter" >
-              Unifier offers a 360-degree perspective on
-              a wide variety of topics, such as shopping preferences, which segment the customer is in
-              according to their spending, and products with a high percentage of being sold together.
-            
-            </p>
-            <p className="letter">
-              It turns the analyzes made into a dashboard with a user-friendly interface and guides
-              companies on issues related to sales policies.
-            </p>
+                text="HOSPİTAL"
+                size={5}
+                color={ColorPalette.white}
+                sx={{ height: "5%", fontSize: 52 }}
+              />
+              <AGrid
+                sx={{
+                  height: "45vh",
+                  backgroundImage: `url(${"bilgiislem.png"})`,
+                }}
+              >
+                <AGridItem xs={1} />
+                <AGridItem
+                  xs={5}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                />{" "}
+              </AGrid>
             </Box>
           </Box>
         </AGridItem>
@@ -117,7 +134,7 @@ export default function SignInPage() {
           xs={4}
           sx={{
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <Box
@@ -161,13 +178,13 @@ export default function SignInPage() {
                   fullWidth
                   id="userName"
                   label="User Name"
-                  type='text'
+                  type="text"
                   autoComplete="none"
                   InputLabelProps={{
-                    style: { color: '#fff' },
+                    style: { color: "#fff" },
                   }}
                   InputProps={{
-                    style: { color: '#00003f' }
+                    style: { color: "#00003f" },
                   }}
                   value={userName}
                   onChange={(e: any) => {
@@ -180,7 +197,7 @@ export default function SignInPage() {
                     outline: "none",
                     fontSize: "1rem",
                     fontWeight: "bold",
-                    display: "center"
+                    display: "center",
                   }}
                 />
                 <TextField
@@ -191,15 +208,15 @@ export default function SignInPage() {
                   type="password"
                   id="password"
                   InputLabelProps={{
-                    style: { color: '#fff' }
+                    style: { color: "#fff" },
                   }}
                   InputProps={{
-                    style: { color: "#00003f" }
+                    style: { color: "#00003f" },
                   }}
                   inputProps={{
-                    autoComplete: 'new-password',
+                    autoComplete: "new-password",
                     form: {
-                      autoComplete: 'off',
+                      autoComplete: "off",
                     },
                   }}
                   value={password}
@@ -213,7 +230,7 @@ export default function SignInPage() {
                     outline: "none",
                     fontSize: "1rem",
                     fontWeight: "bold",
-                    marginTop: -18
+                    marginTop: -18,
                   }}
                 />
                 <AButton
@@ -221,7 +238,8 @@ export default function SignInPage() {
                   variant="contained"
                   color="primary"
                   style={{
-                    background: "linear-gradient(to right, #14163C 0%, #03217B 79%)",
+                    background:
+                      "linear-gradient(to right, #14163C 0%, #03217B 79%)",
                     textTransform: "uppercase",
                     letterSpacing: "0.2rem",
                     width: "65%",
@@ -267,7 +285,6 @@ export default function SignInPage() {
           </Box>
         </AGridItem>
         <CssBaseline />
-        <AGridItem xs={1} />
       </AGrid>
     </>
   );
