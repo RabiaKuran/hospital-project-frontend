@@ -14,15 +14,15 @@ const ANavbar = () => {
       position="static"
       color="default"
       sx={{
-        paddingLeft: "30px",
+        paddingLeft: "5px",
         boxShadow: "0px 4px 18px -2px #d2d2d2",
         background: "linear-gradient(to right, #14163C 0%, #03217B 79%)",
-        height: "9.5%"
+        height: "12%"
       }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 0, marginLeft: -3.5, marginTop: 1 }}>
+          <Box sx={{marginTop:-7}}>
             <AImageItem />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

@@ -81,7 +81,7 @@ export default function SignInPage() {
               flexDirection: "column",
               alignItems: "center",
               display: "flex",
-              height: "60%",
+              height: "65%",
               width: "100%",
               background: "rgba(255, 255, 255, 0.15)",
               boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",

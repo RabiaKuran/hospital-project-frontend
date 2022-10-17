@@ -1,8 +1,8 @@
 export default function AImageItem() {
 
     return (
-        <a href="http://www.datumtr.com/">
-            <img src="Datum-text.png" width={200} height={60} />
+        <a href="https://www.acibadem.com.tr/">
+            <img src="HOSPITAL.png" width={270} height={270} />
         </a>
     );
 } 

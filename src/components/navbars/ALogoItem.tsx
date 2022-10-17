@@ -6,6 +6,6 @@ export default function ALogoItem() {
     }
 
     return (
-        <h1 onClick={logo} style={{ color: "#fff", fontSize: 44, marginTop: -1, marginLeft: -25, fontFamily: "-moz-initial", fontWeight: "1" }}>Unifier</h1>
+        <h1 onClick={logo} style={{ color: "#fff", fontSize: 44, marginTop: -1, marginLeft: -25, fontFamily: "-moz-initial", fontWeight: "1" }}>HOME PAGE</h1>
     );
 } 
