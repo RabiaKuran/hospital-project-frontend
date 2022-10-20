@@ -64,8 +64,8 @@ export default function SignInPage() {
       </Dialog>
       <AGrid
         sx={{
-          height: "105vh",
-          backgroundImage: `url(${"1.jpg"})`,
+          height: "106vh",
+          backgroundImage: `url(${"back.jpg"})`,
         }}
       >
         <AGridItem xs={1} />
@@ -113,8 +113,9 @@ export default function SignInPage() {
               />
               <AGrid
                 sx={{
-                  height: "45vh",
+                  height: "40vh",
                   backgroundImage: `url(${"bilgiislem.png"})`,
+                
                 }}
               >
                 <AGridItem xs={1} />

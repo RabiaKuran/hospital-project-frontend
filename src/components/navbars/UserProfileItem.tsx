@@ -2,8 +2,8 @@ import './UserProfileItem.css'
 
 export default function UserProfileItem() {
     const data = {
-      userName: "Ali Özcan",
-      branch: "İstanbul Anadolu Bölgesi",
+      userName: "Rabiya Kuran",
+      branch: "Hatane bölümü",
       address: "Kadıköy 11, Perakende Şube, BPY",
     };
   return (

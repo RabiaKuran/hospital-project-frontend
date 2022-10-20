@@ -42,8 +42,9 @@ export const PanelLayout = (props: any) => {
                         <Route path="/sign-up" element={<SignUpPage />} />
                         <Route path="/panel" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<PanelPage />} />} />
                         <Route path="/dashboard" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HomePage />} />} />
-                        <Route path="/artificial-intelligence" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ArtificialIntelligencePage />} />} />
-                    </Routes>
+                        <Route path="/patients" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ArtificialIntelligencePage />} />} />
+                        <Route path="/menu" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ArtificialIntelligencePage />} />} />
+                   </Routes>
                 </Box>
             </PanelLayoutRoot>
         </UserContextProvider>

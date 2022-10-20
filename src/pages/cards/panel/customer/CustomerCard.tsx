@@ -33,14 +33,14 @@ export default function CustomerCard() {
             <ACardContent >
                 <AGridItem xs={12}>
                     <AHeaderLabel
-                        text="Customer 360 Module"
+                        text="HASTALARIM"
                         size={5}
                         color={ColorPalette.darkestBlue}
                         sx={{ display: "flex", justifyContent: "center", marginTop: -30 }}
                     />
                 </AGridItem>
                 <AGridItem xs={12}>
-                    <img src="Dashboard.PNG" width={700} height={340}
+                    <img src="hospital-6633776_1920.png" width={850} height={350}
                         style={{
                             marginTop: 20,
                             borderRadius: 10,
@@ -50,14 +50,13 @@ export default function CustomerCard() {
                 </AGridItem>
                 <AGridItem xs={12} sx={{ marginTop: -2 }}>
                     <p className="letter">
-                        This module aims to provide a <strong>360-degree perspective to the customer on a wide variety of issues </strong>
-                        such as product similarity rates, customer lifetime value, which segment the customer is in
-                        according to their expenses.
+                        Buradan <strong>kendi hastalarınız için, oda numaraları, istekleri gibi  </strong>
+                        tüm bilgilere ulaşabilirsiniz. Bigilere ulaşabilmek için giriş butonuna tıklayınız.
                     </p>
                 </AGridItem>
                 <AGridItem xs={12}>
                     <AButton
-                        text="Start to Explore"
+                        text="GİRİŞ"
                         variant="contained"
                         color="primary"
                         style={{

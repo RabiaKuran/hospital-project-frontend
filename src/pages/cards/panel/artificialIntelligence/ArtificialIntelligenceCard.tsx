@@ -9,7 +9,7 @@ import AHeaderLabel from "../../../../components/labels/header/AHeaderLabel";
 export default function ArtificialIntelligenceCard() {
 
     const handleAI = () => {
-        RedirectHelper.redirect("/artificial-intelligence");
+        RedirectHelper.redirect("/patients");
     }
 
     return (
@@ -32,16 +32,16 @@ export default function ArtificialIntelligenceCard() {
             <ACardContent >
                 <AGridItem xs={12}>
                     <AHeaderLabel
-                        text="Artificial Intelligence Module"
+                        text="HASTANE İLE İLGİLİ DURUM BİLGİSİ"
                         size={5}
                         color={ColorPalette.darkestBlue}
                         sx={{ display: "flex", justifyContent: "center", marginTop: -30 }}
                     />
                 </AGridItem>
                 <AGridItem xs={12}>
-                    <img src="Dashboard.PNG" width={700} height={340}
+                    <img src="33.jpg" width={850} height={350}
                         style={{
-                            marginTop: 18,
+                            marginTop: 20,
                             borderRadius: 10,
                             boxShadow: "#14163C 0px 0px 10px 0px"
                         }}
@@ -49,13 +49,13 @@ export default function ArtificialIntelligenceCard() {
                 </AGridItem>
                 <AGridItem xs={12} sx={{ marginTop: -2 }}>
                     <p className="letter">
-                        This module includes buttons aimed at performing analyses such as <strong>segment, churn, cross sell and clv. </strong>
-                        Thanks to these analyzes, it is converted into a dashboard with a user-friendly interface.
+                        Buradan hastanede bulunan <strong> odaların müsaitliğini, ürünlerin anlık olarak ne kadarının hastane de bulunduğunu </strong>
+                        görebilirsiniz.
                     </p>
                 </AGridItem>
                 <AGridItem xs={12}>
                     <AButton
-                        text="Start to Explore"
+                        text="BİLGİ"
                         variant="contained"
                         color="primary"
                         style={{
