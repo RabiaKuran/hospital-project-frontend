@@ -21,6 +21,7 @@ export enum ColorPalette {
   orangeSmoke = "#fff5f5",
   yellow = "#FFCD6C",
   purpleLight = "#8884d8",
+  circleGray = "#EDEDED",
   purpleMedium = "#413ea0",
   orangeLight = "#ff7300",
   circleOne = "#8884d8",
@@ -35,5 +36,7 @@ export enum ColorPalette {
   pieThree = "#00C49F",
   darkestBlue = "#14163C",
   darkGreen = "#023020",
-  blueBerry = "#75A1D0"
+  blueBerry = "#75A1D0",
+  grayy = "#A7A9AC",
+  hoverDropdown = "#F7F6FA",
 }

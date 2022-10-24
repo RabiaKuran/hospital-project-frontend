@@ -9,7 +9,7 @@ import ProtectedRoute, { ProtectedRouteProps } from "../protectedRoute/Protected
 import TokenHelper from "../../helper/TokenHelper";
 import SignInPage from "../../pages/signIn/SignInPage";
 import SignUpPage from "../../pages/signUp/SignUpPage";
-import ArtificialIntelligencePage from "../../pages/artificialIntelligence/ArtificialIntelligencePage";
+import HospitalInformation from "../../pages/hospitalInformation/HospitalInformationPage";
 
 const PanelLayoutRoot = styled("div")(({ theme }) => ({
     display: "flex",
@@ -41,9 +41,9 @@ export const PanelLayout = (props: any) => {
                         <Route path="/" element={<SignInPage />} />
                         <Route path="/sign-up" element={<SignUpPage />} />
                         <Route path="/panel" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<PanelPage />} />} />
-                        <Route path="/dashboard" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HomePage />} />} />
-                        <Route path="/patients" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ArtificialIntelligencePage />} />} />
-                        <Route path="/menu" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ArtificialIntelligencePage />} />} />
+                        <Route path="/patients" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HomePage />} />} />
+                        <Route path="/hospitalInformation" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HospitalInformation />} />} />
+                        <Route path="/menu" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HospitalInformation />} />} />
                    </Routes>
                 </Box>
             </PanelLayoutRoot>

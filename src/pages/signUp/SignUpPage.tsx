@@ -82,7 +82,7 @@ export default function SignUpPage() {
             <AGrid
                 sx={{
                     height: "105vh",
-                    backgroundImage: `url(${"12.jpg"})`,
+                    backgroundImage: `url(${"back.jpg"})`,
                 }}
             >
                 <AGridItem xs={3.5} />

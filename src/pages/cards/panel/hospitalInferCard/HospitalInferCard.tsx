@@ -6,10 +6,10 @@ import AButton from "../../../../components/buttons/AButton";
 import RedirectHelper from "../../../../helper/RedirectHelper";
 import AHeaderLabel from "../../../../components/labels/header/AHeaderLabel";
 
-export default function ArtificialIntelligenceCard() {
+export default function HospitalInferCard() {
 
     const handleAI = () => {
-        RedirectHelper.redirect("/patients");
+        RedirectHelper.redirect("/hospitalInformation");
     }
 
     return (
