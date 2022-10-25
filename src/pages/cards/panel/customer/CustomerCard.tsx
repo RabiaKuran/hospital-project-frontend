@@ -10,7 +10,7 @@ import '../../../panel/panelPage.css'
 export default function CustomerCard() {
 
     const handleDashboard = () => {
-        RedirectHelper.redirect("/dashboard");
+        RedirectHelper.redirect("/patients");
     }
 
     return (

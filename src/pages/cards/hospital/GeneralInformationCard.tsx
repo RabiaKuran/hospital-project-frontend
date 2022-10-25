@@ -8,7 +8,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import RedirectHelper from "../../../helper/RedirectHelper";
 import CommentIcon from '@mui/icons-material/Comment';
 
-interface ICrossSellProps {
+interface IGeneralInformationCard {
     alert1: Boolean;
     alert2: Boolean;
     alert3: Boolean;
@@ -18,7 +18,7 @@ interface ICrossSellProps {
     button: Boolean;
 }
 
-export default function CrossSellCard(props: ICrossSellProps) {
+export default function GeneralInformationCard(props: IGeneralInformationCard) {
     const { alert1, alert2, alert3, alert4, alert5, progress, button } = props;
 
     const explore = () => {

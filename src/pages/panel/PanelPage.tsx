@@ -4,7 +4,7 @@ import "../../components/labels/horizontalRule/horizontalRule.css";
 import './panelPage.css'
 import ANavbar from "../../components/navbars/ANavbar";
 import CustomerCard from "../cards/panel/customer/CustomerCard";
-import ArtificialIntelligenceCard from "../cards/panel/artificialIntelligence/ArtificialIntelligenceCard";
+import HospitalInferCard from "../cards/panel/hospitalInferCard/HospitalInferCard";
 
 export default function PanelPage() {
 
@@ -37,7 +37,7 @@ export default function PanelPage() {
             marginTop: 8
           }}
         >
-          <ArtificialIntelligenceCard />
+          <HospitalInferCard/>
         </AGridItem>
         <AGridItem xs={1} />
       </AGrid>

@@ -3,17 +3,17 @@ import AGrid from "../../components/grids/AGrid";
 import "../../components/labels/horizontalRule/horizontalRule.css";
 import AButton from "../../components/buttons/AButton";
 import { useState } from "react";
-import CltvCard from "../cards/artificialIntelligence/CltvCard";
-import ChurnCard from "../cards/artificialIntelligence/ChurnCard";
-import SegmentCard from "../cards/artificialIntelligence/SegmentCard";
-import CrossSellCard from "../cards/artificialIntelligence/CrossSellCard";
 import CltvService from "../../services/artificialIntelligence/CltvService";
 import ChurnService from "../../services/artificialIntelligence/ChurnService";
 import SegmentService from "../../services/artificialIntelligence/SegmentService";
 import CrossSellService from "../../services/artificialIntelligence/CrossSellService";
 import AINavbar from "../../components/navbars/AINavbar";
+import PersonalProductsCard from "../cards/hospital/PersonalProductsCard";
+import FoodSectionCard from "../cards/hospital/FoodSectionCard";
+import FloorInformationCard from "../cards/hospital/FloorInformationCard";
+import GeneralInformationCard from "../cards/hospital/GeneralInformationCard";
 
-export default function ArtificialIntelligencePage() {
+export default function HospitalInformation() {
     const [alert11, setAlert11] = useState<Boolean>(false);
     const [alert12, setAlert12] = useState<Boolean>(false);
     const [alert13, setAlert13] = useState<Boolean>(false);
@@ -227,7 +227,7 @@ export default function ArtificialIntelligencePage() {
             >
                 <AGridItem xs={3} >
                     <AButton
-                        text="Click For Cltv Analysis"
+                        text="KİŞİSEL ÜRÜNLER"
                         variant="contained"
                         color="primary"
                         style={{
@@ -248,7 +248,7 @@ export default function ArtificialIntelligencePage() {
                 </AGridItem>
                 <AGridItem xs={3}>
                     <AButton
-                        text="Click For Churn Analysis"
+                        text="YEMEK KATI"
                         variant="contained"
                         color="primary"
                         style={{
@@ -269,7 +269,7 @@ export default function ArtificialIntelligencePage() {
                 </AGridItem>
                 <AGridItem xs={3}>
                     <AButton
-                        text="Click For Segment Analysis"
+                        text="KAT BİLGİLERİ"
                         variant="contained"
                         color="primary"
                         style={{
@@ -290,7 +290,7 @@ export default function ArtificialIntelligencePage() {
                 </AGridItem>
                 <AGridItem xs={3}>
                     <AButton
-                        text="Click For Cross Sell Analysis"
+                        text="GENEL BİLGİLER"
                         variant="contained"
                         color="primary"
                         style={{
@@ -310,16 +310,16 @@ export default function ArtificialIntelligencePage() {
                     />
                 </AGridItem>
                 {dataSource1 &&
-                    <CltvCard alert1={alert11} alert2={alert12} alert3={alert13} alert4={alert14} alert5={alert15} progress={progress1} button={button1} />
+                    <PersonalProductsCard alert1={alert11} alert2={alert12} alert3={alert13} alert4={alert14} alert5={alert15} progress={progress1} button={button1} />
                 }
                 {dataSource2 &&
-                    <ChurnCard alert1={alert21} alert2={alert22} alert3={alert23} alert4={alert24} alert5={alert25} progress={progress2} button={button2} />
+                    <FoodSectionCard alert1={alert21} alert2={alert22} alert3={alert23} alert4={alert24} alert5={alert25} progress={progress2} button={button2} />
                 }
                 {dataSource3 &&
-                    <SegmentCard alert1={alert31} alert2={alert32} alert3={alert33} alert4={alert34} alert5={alert35} progress={progress3} button={button3} />
+                    <FloorInformationCard alert1={alert31} alert2={alert32} alert3={alert33} alert4={alert34} alert5={alert35} progress={progress3} button={button3} />
                 }
                 {dataSource4 &&
-                    <CrossSellCard alert1={alert41} alert2={alert42} alert3={alert43} alert4={alert44} alert5={alert45} progress={progress4} button={button4} />
+                    <GeneralInformationCard alert1={alert41} alert2={alert42} alert3={alert43} alert4={alert44} alert5={alert45} progress={progress4} button={button4} />
                 }
             </AGrid >
         </>

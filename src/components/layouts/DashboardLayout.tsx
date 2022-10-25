@@ -25,9 +25,9 @@ export const DashboardLayout = (props: any) => {
         <Box sx={mainBoxSx}>
           <Routes>
             {RouteManager().routes.map((route, index) => (
-              <Route key={"dashboard" + index} path={route.path} element={route.component} />
+              <Route key={"patient" + index} path={route.path} element={route.component} />
             ))}
-            <Route path="/dashboard" element={<HomePage />} />
+            <Route path="/patient" element={<HomePage />} />
           </Routes>
         </Box>
       </UserContextProvider>
