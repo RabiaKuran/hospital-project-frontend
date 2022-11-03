@@ -74,27 +74,27 @@ export default function HospitalInformation() {
             setTimeout(() => {
                 clearInterval(time)
                 setProgress1(false)
-            }, 24000);
+            }, 1);
             setCount1(true)
         }
         setInterval(() => {
             setAlert11(true)
-        }, 3000);
+        }, 2);
         setInterval(() => {
             setAlert12(true)
-        }, 7000);
+        }, 7);
         setInterval(() => {
             setAlert13(true)
-        }, 11000);
+        }, 111);
         setInterval(() => {
             setAlert14(true)
-        }, 16000);
+        }, 16);
         setInterval(() => {
             setAlert15(true)
-        }, 20000);
+        }, 20);
         setInterval(() => {
             setButton1(true)
-        }, 24000);
+        }, 24);
 
     }
 
@@ -114,27 +114,27 @@ export default function HospitalInformation() {
             setTimeout(() => {
                 clearInterval(time)
                 setProgress2(false)
-            }, 24000);
+            }, 2);
             setCount2(true)
         }
         setInterval(() => {
             setAlert21(true)
-        }, 3000);
+        }, 3);
         setInterval(() => {
             setAlert22(true)
-        }, 7000);
+        }, 7);
         setInterval(() => {
             setAlert23(true)
-        }, 11000);
+        }, 1);
         setInterval(() => {
             setAlert24(true)
-        }, 16000);
+        }, 1);
         setInterval(() => {
             setAlert25(true)
-        }, 20000);
+        }, 2);
         setInterval(() => {
             setButton2(true)
-        }, 24000);
+        }, 24);
     }
 
     const handleSegment = () => {
@@ -153,27 +153,27 @@ export default function HospitalInformation() {
             setTimeout(() => {
                 clearInterval(time)
                 setProgress3(false)
-            }, 24000);
+            }, 2);
             setCount3(true)
         }
         setInterval(() => {
             setAlert31(true)
-        }, 3000);
+        }, 3);
         setInterval(() => {
             setAlert32(true)
-        }, 7000);
+        }, 7);
         setInterval(() => {
             setAlert33(true)
-        }, 11000);
+        }, 11);
         setInterval(() => {
             setAlert34(true)
-        }, 16000);
+        }, 16);
         setInterval(() => {
             setAlert35(true)
-        }, 20000);
+        }, 2);
         setInterval(() => {
             setButton3(true)
-        }, 24000);
+        }, 24);
     }
 
     const handleCrossSell = () => {
@@ -192,27 +192,27 @@ export default function HospitalInformation() {
             setTimeout(() => {
                 clearInterval(time)
                 setProgress4(false)
-            }, 240000);
+            }, 2);
             setCount4(true)
         }
         setInterval(() => {
             setAlert41(true)
-        }, 3000);
+        }, 3);
         setInterval(() => {
             setAlert42(true)
-        }, 10000);
+        }, 1);
         setInterval(() => {
             setAlert43(true)
-        }, 60000);
+        }, 6);
         setInterval(() => {
             setAlert44(true)
-        }, 120000);
+        }, 12);
         setInterval(() => {
             setAlert45(true)
-        }, 200000);
+        }, 2);
         setInterval(() => {
             setButton4(true)
-        }, 240000);
+        }, 24);
     }
 
     return (
@@ -310,16 +310,16 @@ export default function HospitalInformation() {
                     />
                 </AGridItem>
                 {dataSource1 &&
-                    <PersonalProductsCard alert1={alert11} alert2={alert12} alert3={alert13} alert4={alert14} alert5={alert15} progress={progress1} button={button1} />
+                    <PersonalProductsCard progress={progress1} button={button1}  />
                 }
                 {dataSource2 &&
-                    <FoodSectionCard alert1={alert21} alert2={alert22} alert3={alert23} alert4={alert24} alert5={alert25} progress={progress2} button={button2} />
+                    <FoodSectionCard  progress={progress2} button={button2} />
                 }
                 {dataSource3 &&
-                    <FloorInformationCard alert1={alert31} alert2={alert32} alert3={alert33} alert4={alert34} alert5={alert35} progress={progress3} button={button3} />
+                    <FloorInformationCard progress={progress3} button={button3} />
                 }
                 {dataSource4 &&
-                    <GeneralInformationCard alert1={alert41} alert2={alert42} alert3={alert43} alert4={alert44} alert5={alert45} progress={progress4} button={button4} />
+                    <GeneralInformationCard progress={progress4} button={button4} />
                 }
             </AGrid >
         </>

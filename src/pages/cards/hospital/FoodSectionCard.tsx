@@ -5,17 +5,13 @@ import RedirectHelper from "../../../helper/RedirectHelper";
 import CommentIcon from '@mui/icons-material/Comment';
 
 interface IFoodSectionCard {
-    alert1: Boolean;
-    alert2: Boolean;
-    alert3: Boolean;
-    alert4: Boolean;
-    alert5: Boolean;
+    
     progress: Boolean;
     button: Boolean;
 }
 
 export default function FoodSectionCard(props: IFoodSectionCard) {
-    const { alert1, alert2, alert3, alert4, alert5, progress, button } = props;
+    const {  progress, button } = props;
 
     const explore = () => {
         RedirectHelper.redirect("/dashboard");
@@ -32,20 +28,12 @@ export default function FoodSectionCard(props: IFoodSectionCard) {
                     </Stack>
                 }
             </AGridItem>
-            <AGridItem xs={12}>
-                {alert1 &&
-                    <Alert icon={<CommentIcon style={{ fontSize: 75, color: "#0073B0" }} />} style={{ fontSize: 30, color: "#0073B0", display: "flex", alignItems: "center", background: "rgba(30,144,255,0.2)", paddingTop: 20, paddingBottom: 20 }}>
-                        <AlertTitle style={{ fontSize: 40 }}>Bilgi</AlertTitle>
-                        Beklediğiniz içi teşekkürler.
-                    </Alert>
-
-                }
-            </AGridItem>
+            
             <AGridItem xs={12}>
                 {button &&
                     <AButton
                         className="alert5"
-                        text="ÜRÜNLERİ GETİR"
+                        text="Yemek Bölümü"
                         variant="contained"
                         color="primary"
                         style={{

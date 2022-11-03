@@ -9,17 +9,12 @@ import RedirectHelper from "../../../helper/RedirectHelper";
 import CommentIcon from '@mui/icons-material/Comment';
 
 interface IGeneralInformationCard {
-    alert1: Boolean;
-    alert2: Boolean;
-    alert3: Boolean;
-    alert4: Boolean;
-    alert5: Boolean;
     progress: Boolean;
     button: Boolean;
 }
 
 export default function GeneralInformationCard(props: IGeneralInformationCard) {
-    const { alert1, alert2, alert3, alert4, alert5, progress, button } = props;
+    const { progress, button } = props;
 
     const explore = () => {
         RedirectHelper.redirect("/dashboard");
@@ -37,54 +32,12 @@ export default function GeneralInformationCard(props: IGeneralInformationCard) {
                     </Stack>
                 }
             </AGridItem>
-            <AGridItem xs={12}>
-                {alert1 &&
-                    <Alert icon={<CommentIcon style={{ fontSize: 75, color: "#0073B0" }} />} style={{ fontSize: 30, color: "#0073B0", display: "flex", alignItems: "center", background: "rgba(30,144,255,0.2)", paddingTop: 20, paddingBottom: 20 }}>
-                        <AlertTitle style={{ fontSize: 40 }}>Cross Sell Analysis</AlertTitle>
-                        Cross sell analysis can be expressed as the determination of a purchased product, which product it was purchased
-                        with and customer habits. Therefore, cross sell is often referred to as market basket analysis. Using market
-                        basket analysis, you can get information about the products that customers are simultaneously buying and have
-                        the potential to buy.
-                    </Alert>
-
-                }
-            </AGridItem>
-            <AGridItem xs={12}>
-                {alert2 &&
-                    <Alert icon={<AdbIcon style={{ fontSize: 87, color: "#696969" }} />} style={{ fontSize: 30, color: "#696969", display: "flex", alignItems: "center", background: "rgba(105,105,105,0.2)", paddingTop: 20, paddingBottom: 20 }}>
-                        <AlertTitle style={{ fontSize: 40 }}>Hello, I am iUnifier</AlertTitle>
-                        I've got your request, I'm going to start working in no time. I am trying to make it as soon
-                        as possible, but cross sell analysis can take a long time. It may take about 4 minutes.
-                    </Alert>
-                }
-            </AGridItem>
-            <AGridItem xs={12}>
-                {alert3 &&
-                    <Alert id="alert2" icon={<ContentPasteSearchIcon style={{ fontSize: 75, color: "#A64DA6" }} />} style={{ fontSize: 30, color: "#A64DA6", display: "flex", alignItems: "center", background: "rgba(152,45,223,0.1)", paddingTop: 30, paddingBottom: 30 }}>
-                        I continue to examine . . .
-                    </Alert>
-                }
-            </AGridItem>
-            <AGridItem xs={12}>
-                {alert4 &&
-                    <Alert id="alert3" icon={<UpdateIcon style={{ fontSize: 75, color: "#FF8C00" }} />} style={{ fontSize: 30, color: "#FF8C00", display: "flex", alignItems: "center", background: "rgba(255,165,0, 0.2)", paddingTop: 30, paddingBottom: 30 }}>
-                        It's almost over. I will present the results of the cross sell analysis you requested.
-                    </Alert>
-                }
-            </AGridItem>
-            <AGridItem xs={12}>
-                {alert5 &&
-                    <Alert id="alert4" icon={<TaskAltIcon style={{ fontSize: 70, color: "#008000" }} />} style={{ fontSize: 30, color: "#008000", display: "flex", alignItems: "center", background: "rgba(49, 180, 45, 0.2)", paddingTop: 30, paddingBottom: 30 }} >
-                        IT'S DONE! I AM COMPLETED THE CROSS SELL ANALYSIS. YOU CAN SEE THE ANALYSIS RESULTS ON THE CUSTOMER
-                        360 DASHBOARD RIGHT NOW...
-                    </Alert>
-                }
-            </AGridItem>
+            
             <AGridItem xs={12}>
                 {button &&
                     <AButton
                         className="alert5"
-                        text="Start to Explore"
+                        text="Genel Bilgiler"
                         variant="contained"
                         color="primary"
                         style={{
