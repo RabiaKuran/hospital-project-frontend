@@ -1,5 +1,6 @@
 export default interface AverageRecencyCltvPRecencyModel {
-    label: string;
-    recency: number;
-    recencyCltvP: number;
+    urunId: number;
+    urunKategori: string;
+    urunAdi: string;
+    urunAdedi: number;
 }

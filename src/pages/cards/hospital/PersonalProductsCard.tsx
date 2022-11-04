@@ -22,6 +22,7 @@ import ATableRow from "../../../components/tables/ATableRow";
 import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCell";
 import { ColorPalette } from "../../../theme/ColorPalette";
 import { minHeight } from "@mui/system";
+import AverageRecencyCltvPRecencyCard from "../averageRecencyCltvPRecency/AverageRecencyCltvPRecencyCard";
 
 interface IPersonalProductsCard {
   progress: Boolean;
@@ -196,6 +197,7 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
                 </ATableBody>
               </ATable>
             </ATableContainer>
+            <AverageRecencyCltvPRecencyCard></AverageRecencyCltvPRecencyCard>
           </AGridItem>
       </AGrid>
     </ACard>
