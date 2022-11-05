@@ -41,8 +41,7 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
     RedirectHelper.redirect("/dashboard");
   };
 
-  const [averageRecencyCltvPRecency, setAverageRecencyCltvPRecency] =
-    useState<ProductsModel[]>();
+  const [averageRecencyCltvPRecency, setAverageRecencyCltvPRecency] =useState<ProductsModel[]>();
   const [loading, setLoading] = React.useState(true);
   const [dataSource, setDataSource] = React.useState<any>([]);
 
