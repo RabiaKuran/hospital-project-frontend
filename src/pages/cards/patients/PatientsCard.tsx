@@ -5,12 +5,10 @@ import AGridItem from "../../../components/grids/AGridItem";
 import ACardContent from "../../../components/cards/ACardContent";
 import { useEffect, useState } from "react";
 import ACardHeader from "../../../components/cards/ACardHeader";
-import ATableBody from "../../../components/tables/ATableBody";
 import { ColorPalette } from "../../../theme/ColorPalette";
 import ATable from "../../../components/tables/ATable";
 import ATableContainer from "../../../components/tables/ATableContainer";
 import ATableHead from "../../../components/tables/ATableHead";
-import ASelect from "../../../components/select/ASelect";
 import ATableRow from "../../../components/tables/ATableRow";
 import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCell";
 import InfoDialog from "../../../components/dialogs/InfoDialog";
@@ -19,6 +17,11 @@ import ASearch from "../../../components/search/ASearch";
 import PatientsModel from "../../../models/patients/PatientsModel";
 import PatientsService from "../../../services/patients/PatientsService";
 import { TableBody } from "@mui/material";
+import AButton from "../../../components/buttons/AButton";
+import ATableBody from "../../../components/tables/ATableBody";
+import ADialog from "../../../components/dialogs/ADialog";
+import InfoDialogNew from "../../../components/dialogs/InfoDialogNew";
+import { Console } from "console";
 
 export interface PatientsItem {
   hId: number;
@@ -33,11 +36,22 @@ export default function PatientsCard() {
   const [loading, setLoading] = useState(true);
   const [patients, setPatients] = useState<PatientsModel[]>();
   const [dataSource, setDataSource] = useState<any>([]);
-
-  const SelectDataSource: any = [{ label: "Ölçek", value: "1" }];
+  const [patientName, setPatientName] = useState<any>(0);
+  const [search, setSearch] = useState(1);
   useEffect(() => {
     getPatients();
-  }, []);
+  }, [patientName]);
+
+  const requestSearch = (searchedVal: any) => {
+    setPatientName(searchedVal);   
+  };
+  const handleClick = () => {
+    setSearch(2);
+  };
+
+  const handleClick2 = () => {
+    setSearch(3);
+  };
 
   const getPatients = async () => {
     try {
@@ -69,7 +83,7 @@ export default function PatientsCard() {
         action={
           <InfoDialog headerText={"Hasta Bilgi"}>
             <p style={{ fontSize: 20, color: ColorPalette.gray }}>
-              Bilgi eklenecek
+              Burası hastalara ait yatış bilgilerini gösterir
             </p>
           </InfoDialog>
         }
@@ -78,17 +92,26 @@ export default function PatientsCard() {
       <ACardContent>
         <AGrid>
           <AGridItem xs={3}>
-            <AGridItem sx={{ marginTop: "15px", marginRight: "30px" }}>
-              <ASearch placeholder="Hasta Ara"></ASearch>
+            <AGridItem>
+              <ASearch
+                label="Hasta Ara"
+                placeholder="Ad Soyad"
+                onChange={(e: any) => requestSearch(e.target.value)}
+              ></ASearch>
+
+              <AGridItem marginLeft={37} marginTop={2}>
+                <AButton
+                  text="Ara"
+                  gradient
+                  style={{ width: 95, height: 36, borderRadius: 2 }}
+                  onClick={handleClick}
+                />
+              </AGridItem>
             </AGridItem>
           </AGridItem>
 
           <AGridItem xs={9} sx={{ overflow: "hidden" }} marginTop={3}>
-            <AGridItem xs={2}>
-              <ASelect dataSource={SelectDataSource} selected={1} />
-            </AGridItem>
-            <AGridItem xs={8}></AGridItem>
-            <ATableContainer sx={{ minHeight: 250 }}>
+            <ATableContainer>
               <ATable className="basic">
                 <ATableHead>
                   <ATableRow>
@@ -119,21 +142,57 @@ export default function PatientsCard() {
                     </HoverStyledTableCell>
                   </ATableRow>
                 </ATableHead>
-                <TableBody>
-                  {patients?.map((row) => {
-                      return (
-                        <ATableRow    >
-                          <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
-                          <HoverStyledTableCell>{row.adSoyad}</HoverStyledTableCell>
-                          <HoverStyledTableCell>{row.radSoyad}</HoverStyledTableCell>
-                          <HoverStyledTableCell>{row.yatisSebebi}</HoverStyledTableCell>
-                          <HoverStyledTableCell>{row.cadSoyad}</HoverStyledTableCell>   
-                        </ATableRow>
-                      );
-                    })}
-                </TableBody>
+                {patients?.map((row) => (
+                  <ATableBody>
+                    {search === 1 ? (
+                      <ATableRow>
+                        <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.adSoyad}
+                        </HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.radSoyad}
+                        </HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.yatisSebebi}
+                        </HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.cadSoyad}
+                        </HoverStyledTableCell>
+                      </ATableRow>
+                    ) : row.adSoyad === patientName ? (
+                      <ATableRow>
+                        <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.adSoyad}
+                        </HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.radSoyad}
+                        </HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.yatisSebebi}
+                        </HoverStyledTableCell>
+                        <HoverStyledTableCell>
+                          {row.cadSoyad}
+                        </HoverStyledTableCell>
+                      </ATableRow>
+                      
+                    ) : (
+                      handleClick2                  
+                    )}
+                  </ATableBody>
+                ))}
               </ATable>
             </ATableContainer>
+            {search === 3 ? <AGridItem>
+              Aradığınız kişi bulunamadı
+            </AGridItem>
+            :
+            <AGridItem>
+            </AGridItem>
+            
+            }
+            
           </AGridItem>
         </AGrid>
       </ACardContent>

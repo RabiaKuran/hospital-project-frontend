@@ -49,11 +49,11 @@ export default function ASearch(props: IASearchProps) {
 
   return (
     <AGrid>
-      <AGridItem xs={12}>
-        <AHeaderLabel text={label} color={ColorPalette.grayy} size={2} />
+      <AGridItem xs={9}>
+        <AHeaderLabel text={label} color={ColorPalette.gray} size={3} />
       </AGridItem>
 
-      <AGridItem xs={12}>
+      <AGridItem xs={9}>
         <Search placeholder={placeholder}>
           <SearchIconWrapper>
             <SearchIcon sx={{ color: ColorPalette.grayy }} />
