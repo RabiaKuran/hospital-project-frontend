@@ -11,16 +11,14 @@ export default function HomePage() {
       <AGrid sx={{ padding: 3 }}>
         {/* 1.row */}
         
-        <AGridItem xs={12} sm={6} md={12} xl={12} minHeight={750}>
+        <AGridItem xs={12} sm={12} md={12} xl={12} minHeight={750}>
           <PatientsCard/>
         </AGridItem>
-        <AGridItem xs={12} sm={6} md={3} xl={3}>
-        <PatientsCard/>
-        </AGridItem>
+        
         
                {/* 2. row */}
 
-               <AGridItem xs={12} sm={6} md={3} xl={3}>
+           <AGridItem xs={12} sm={6} md={3} xl={3}>
           
           </AGridItem>
           <AGridItem xs={12} sm={6} md={3} xl={3}>

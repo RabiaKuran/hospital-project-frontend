@@ -27,7 +27,7 @@ interface IPersonalProductsCard {
   button: Boolean;
 }
 
-export interface AverageRecencyCltvPRecencyItem {
+export interface ProductsItem {
   urunId: number;
   urunKategori: string;
   urunAdi: string;
@@ -41,19 +41,19 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
     RedirectHelper.redirect("/dashboard");
   };
 
-  const [averageRecencyCltvPRecency, setAverageRecencyCltvPRecency] =useState<ProductsModel[]>();
+  const [products, setProducts] =useState<ProductsModel[]>();
   const [loading, setLoading] = React.useState(true);
   const [dataSource, setDataSource] = React.useState<any>([]);
 
   React.useEffect(() => {
-    getAverageRecencyCltvPRecency();
+    getProducts();
   }, []);
 
-  const getAverageRecencyCltvPRecency = async () => {
+  const getProducts = async () => {
     try {
-      var averageRecencyCltvPRecency = await ProductsService.getProducts();
-      const data: AverageRecencyCltvPRecencyItem[] = [];
-      averageRecencyCltvPRecency.forEach((item) => {
+      var products = await ProductsService.getProducts();
+      const data: ProductsItem[] = [];
+      products.forEach((item) => {
         data.push({
           urunId: item.urunId,
           urunKategori: item.urunKategori,
@@ -62,7 +62,7 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
         });
       });
       setDataSource(data);
-      setAverageRecencyCltvPRecency(averageRecencyCltvPRecency);
+      setProducts(products);
     } catch (error) {
       alert(error);
     } finally {
@@ -137,7 +137,7 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
                 </ATableRow>
               </ATableHead>
 
-              {averageRecencyCltvPRecency?.map((row) => (
+              {products?.map((row) => (
                 <ATableBody>
                   {row.urunKategori === "Kişisel Bölüm" ? (
                     <ATableRow

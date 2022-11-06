@@ -16,12 +16,51 @@ import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCel
 import InfoDialog from "../../../components/dialogs/InfoDialog";
 import DateHelper from "../../../helper/DateHelper";
 import ASearch from "../../../components/search/ASearch";
+import PatientsModel from "../../../models/patients/PatientsModel";
+import PatientsService from "../../../services/patients/PatientsService";
+import { TableBody } from "@mui/material";
+
+export interface PatientsItem {
+  hId: number;
+  radSoyad: string;
+  adSoyad: string;
+  cadSoyad: string;
+  yatisSebebi: string;
+  odaNo: string;
+}
 
 export default function PatientsCard() {
   const [loading, setLoading] = useState(true);
+  const [patients, setPatients] = useState<PatientsModel[]>();
+  const [dataSource, setDataSource] = useState<any>([]);
 
   const SelectDataSource: any = [{ label: "Ölçek", value: "1" }];
+  useEffect(() => {
+    getPatients();
+  }, []);
 
+  const getPatients = async () => {
+    try {
+      var patients = await PatientsService.getPatients();
+      const data: PatientsItem[] = [];
+      patients.forEach((item) => {
+        data.push({
+          hId: item.hId,
+          radSoyad: item.radSoyad,
+          adSoyad: item.adSoyad,
+          cadSoyad: item.cadSoyad,
+          yatisSebebi: item.yatisSebebi,
+          odaNo: item.odaNo,
+        });
+      });
+      setDataSource(data);
+      setPatients(patients);
+    } catch (error) {
+      alert(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <ACard>
       <ACardHeader
@@ -39,7 +78,7 @@ export default function PatientsCard() {
       <ACardContent>
         <AGrid>
           <AGridItem xs={3}>
-            <AGridItem sx={{ marginTop: "15px", marginRight:"30px" }}>
+            <AGridItem sx={{ marginTop: "15px", marginRight: "30px" }}>
               <ASearch placeholder="Hasta Ara"></ASearch>
             </AGridItem>
           </AGridItem>
@@ -49,49 +88,50 @@ export default function PatientsCard() {
               <ASelect dataSource={SelectDataSource} selected={1} />
             </AGridItem>
             <AGridItem xs={8}></AGridItem>
-            <ATableContainer sx={{ height: 250 }}>
+            <ATableContainer sx={{ minHeight: 250 }}>
               <ATable className="basic">
                 <ATableHead>
                   <ATableRow>
                     <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.gray}>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
                         Oda No
                       </AHeaderLabel>
                     </HoverStyledTableCell>
                     <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.gray}>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
                         Ad Soyad
                       </AHeaderLabel>
                     </HoverStyledTableCell>
-
                     <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.gray}>
-                        Hasta Adı
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
+                        Refakatçi Adı Soyadı
                       </AHeaderLabel>
                     </HoverStyledTableCell>
                     <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.gray}>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
                         Yatış Sebebi
+                      </AHeaderLabel>
+                    </HoverStyledTableCell>
+                    <HoverStyledTableCell>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
+                        Sorumlu Hemşire
                       </AHeaderLabel>
                     </HoverStyledTableCell>
                   </ATableRow>
                 </ATableHead>
-                <ATableBody>
-                  <HoverStyledTableCell>{"A309"}</HoverStyledTableCell>
-                  <HoverStyledTableCell>{"Ecem Kara"}</HoverStyledTableCell>
-                  <HoverStyledTableCell>{"Melisa Kara"}</HoverStyledTableCell>
-                  <HoverStyledTableCell>
-                    {"Böbrek yetmezliği"}
-                  </HoverStyledTableCell>
-                </ATableBody>
-                <ATableBody>
-                  <HoverStyledTableCell>{"A305"}</HoverStyledTableCell>
-                  <HoverStyledTableCell>{"Ayşe Kara"}</HoverStyledTableCell>
-                  <HoverStyledTableCell>{"Can Kara"}</HoverStyledTableCell>
-                  <HoverStyledTableCell>
-                    {"Böbrek yetmezliği"}
-                  </HoverStyledTableCell>
-                </ATableBody>
+                <TableBody>
+                  {patients?.map((row) => {
+                      return (
+                        <ATableRow    >
+                          <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
+                          <HoverStyledTableCell>{row.adSoyad}</HoverStyledTableCell>
+                          <HoverStyledTableCell>{row.radSoyad}</HoverStyledTableCell>
+                          <HoverStyledTableCell>{row.yatisSebebi}</HoverStyledTableCell>
+                          <HoverStyledTableCell>{row.cadSoyad}</HoverStyledTableCell>   
+                        </ATableRow>
+                      );
+                    })}
+                </TableBody>
               </ATable>
             </ATableContainer>
           </AGridItem>
