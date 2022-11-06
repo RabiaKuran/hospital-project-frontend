@@ -3,8 +3,6 @@ import AGrid from "../../components/grids/AGrid";
 import "../../components/labels/horizontalRule/horizontalRule.css";
 import AButton from "../../components/buttons/AButton";
 import { useState } from "react";
-import CltvService from "../../services/artificialIntelligence/CltvService";
-import ChurnService from "../../services/artificialIntelligence/ChurnService";
 import SegmentService from "../../services/artificialIntelligence/SegmentService";
 import CrossSellService from "../../services/artificialIntelligence/CrossSellService";
 import AINavbar from "../../components/navbars/AINavbar";
@@ -12,6 +10,8 @@ import PersonalProductsCard from "../cards/hospital/PersonalProductsCard";
 import FoodSectionCard from "../cards/hospital/FoodSectionCard";
 import FloorInformationCard from "../cards/hospital/FloorInformationCard";
 import GeneralInformationCard from "../cards/hospital/GeneralInformationCard";
+import ProductsService from "../../services/products/ProductsService";
+import ChurnService from "../../services/artificialIntelligence/ChurnService";
 
 export default function HospitalInformation() {
     const [alert11, setAlert11] = useState<Boolean>(false);
@@ -60,7 +60,7 @@ export default function HospitalInformation() {
 
     const handleCltv = () => {
         if (!count11) {
-            CltvService.getCltv();
+            ProductsService.getProducts();
             setCount11(true)
         }
         setDataSource2(false);

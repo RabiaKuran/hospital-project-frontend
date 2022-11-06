@@ -179,31 +179,30 @@ const itemData = [
       title: "Kahvaltılık",
       author: "@erisim",
     },
-  
     {
-      img: "https://www.vitateks.com/images/carsaf4.jpg",
-      title: "Çarşaf",
+      img: "https://cdn.create.vista.com/api/media/medium/82344084/stock-photo-cream-soup?token=",
+      title: "Mercimek",
+      author: "@erisim",
+    },
+    {
+      img: "https://cdn.create.vista.com/api/media/medium/198020482/stock-photo-top-view-arranged-vegetarian-cream?token=",
+      title: "Vejetaryen Çorbası",
       author: "@erisim",
       cols: 2,
     },
     {
-      img: "https://www.vitateks.com/images/yastik1.jpg",
-      title: "Yastık",
+      img: "https://cdn.create.vista.com/api/media/medium/200130718/stock-photo-solyanka-soup-cream?token=",
+      title: "Çorba",
+      author: "@erisim",
+      cols: 2,
+    },
+    {
+      img: "https://cdn.create.vista.com/api/media/medium/1651806/stock-photo-bean-soup?token=",
+      title: "Fasulye Çorbası",
       author: "@erisim",
       rows: 2,
       cols: 2,
       featured: true,
-    },
-    {
-      img: "https://n11scdn.akamaized.net/a1/org/kozmetik-kisisel-bakim/tek-kullanimlik-urunler/ureticiden-500-cift-tek-kullanimlik-terlik-hastane-otel-terligi__0429795930745664.jpg",
-      title: "Terlik",
-      author: "@erisim",
-    },
-    {
-      img: "https://st.myideasoft.com/shop/er/01/myassets/products/383/perfect-hair-washing-cap-jpg-350x350_min.jpg?revision=1519586078",
-      title: "Saç Yıkama Bonesi",
-      author: "@erisim",
-      cols: 2,
     },
     {
       img: "https://www.vitateks.com/images/yorgan3.jpg",
