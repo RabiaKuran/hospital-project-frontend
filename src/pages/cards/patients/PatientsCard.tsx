@@ -16,12 +16,9 @@ import DateHelper from "../../../helper/DateHelper";
 import ASearch from "../../../components/search/ASearch";
 import PatientsModel from "../../../models/patients/PatientsModel";
 import PatientsService from "../../../services/patients/PatientsService";
-import { TableBody } from "@mui/material";
 import AButton from "../../../components/buttons/AButton";
 import ATableBody from "../../../components/tables/ATableBody";
-import ADialog from "../../../components/dialogs/ADialog";
-import InfoDialogNew from "../../../components/dialogs/InfoDialogNew";
-import { Console } from "console";
+
 
 export interface PatientsItem {
   hId: number;
@@ -36,7 +33,7 @@ export default function PatientsCard() {
   const [loading, setLoading] = useState(true);
   const [patients, setPatients] = useState<PatientsModel[]>();
   const [dataSource, setDataSource] = useState<any>([]);
-  const [patientName, setPatientName] = useState<any>(0);
+  const [patientName, setPatientName] = useState<any>();
   const [search, setSearch] = useState(1);
   useEffect(() => {
     getPatients();
@@ -178,7 +175,7 @@ export default function PatientsCard() {
                       </ATableRow>
                       
                     ) : (
-                      handleClick2                  
+                      <AGrid></AGrid>                
                     )}
                   </ATableBody>
                 ))}

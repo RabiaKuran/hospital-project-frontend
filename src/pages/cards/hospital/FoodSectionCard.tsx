@@ -35,19 +35,19 @@ export default function FoodSectionCard(props: IFoodSectionCard) {
     const explore = () => {
         RedirectHelper.redirect("/dashboard");
     }
-    const [averageRecencyCltvPRecency, setAverageRecencyCltvPRecency] =useState<ProductsModel[]>();
+    const [products, setProducts] =useState<ProductsModel[]>();
   const [loading, setLoading] = React.useState(true);
   const [dataSource, setDataSource] = React.useState<any>([]);
 
   React.useEffect(() => {
-    getAverageRecencyCltvPRecency();
+    getProducts();
   }, []);
 
-  const getAverageRecencyCltvPRecency = async () => {
+  const getProducts = async () => {
     try {
-      var averageRecencyCltvPRecency = await ProductsService.getProducts();
+      var products = await ProductsService.getProducts();
       const data: AverageRecencyCltvPRecencyItem[] = [];
-      averageRecencyCltvPRecency.forEach((item) => {
+      products.forEach((item) => {
         data.push({
           urunId: item.urunId,
           urunKategori: item.urunKategori,
@@ -56,7 +56,7 @@ export default function FoodSectionCard(props: IFoodSectionCard) {
         });
       });
       setDataSource(data);
-      setAverageRecencyCltvPRecency(averageRecencyCltvPRecency);
+      setProducts(products);
     } catch (error) {
       alert(error);
     } finally {
@@ -132,7 +132,7 @@ export default function FoodSectionCard(props: IFoodSectionCard) {
                 </ATableRow>
               </ATableHead>
 
-              {averageRecencyCltvPRecency?.map((row) => (
+              {products?.map((row) => (
                 <ATableBody>
                   {row.urunKategori === "Yemek Bölümü" ? (
                     <ATableRow
@@ -205,35 +205,35 @@ const itemData = [
       featured: true,
     },
     {
-      img: "https://www.vitateks.com/images/yorgan3.jpg",
-      title: "Yorgan",
+      img: "https://cdn.create.vista.com/api/media/medium/5005345/stock-photo-conceptual-image-fresh-juice-pours?token=",
+      title: "Meyve Suyu",
       author: "@erisim",
     },
     {
-      img: "https://www.vitateks.com/images/kilif10.jpg",
-      title: "Yastık Kılıfı",
+      img: "https://cdn.create.vista.com/api/media/medium/173892782/stock-photo-pouring-water?token=",
+      title: "Su",
       author: "@erisim",
-    },
+    }, 
     {
-      img: "https://www.vitateks.com/images/alez1.jpg",
-      title: "Alez",
+      img: "https://cdn.create.vista.com/api/media/medium/174635602/stock-photo-cups-of-tea?token=",
+      title: "Çay",
       author: "@erisim",
       rows: 2,
       cols: 2,
     },
     {
-      img: "https://cdn.dermogrup.net/white-glo-dis-macunu-ve-fircasi-seyahat-seti-white-glo-84938-18-O.jpg",
-      title: "Diş macunu ve diş fırçası",
+      img: "https://cdn.create.vista.com/api/media/medium/162338786/stock-photo-collage-with-various-fresh-fruits?token=",
+      title: "Meyve",
       author: "@erisim",
     },
     {
-      img: "https://ae01.alicdn.com/kf/H7ce43bf6c43b41b3a10bfaed95921d73m/S-cak-10-ml-ampuan-Seyahat-Boy-Plastik-i-eler-10-ml-PET-Plastik-ampuan-i.jpg_Q90.jpg_.webp",
-      title: "Şampuan",
+      img: "https://cdn.create.vista.com/api/media/medium/406294672/stock-photo-bowl-spicy-king-oyster-mushroom?token=",
+      title: "Pirinç Pilavı",
       author: "@erisim",
     },
     {
-      img: "https://www.sarfmarket.com.tr/tork-matic-hareketli-havlu-advanced-150-m-6li-fiyati-fotoselli-makine-havlulari-tork-290067-18170-38-K.jpg",
-      title: "Peçete",
+      img: "https://cdn.create.vista.com/api/media/medium/543324666/stock-photo-traditional-turkish-bulgur-pilaf-tomato?token=",
+      title: "Bulgur Pilavı",
       author: "@erisim",
       cols: 2,
     },
