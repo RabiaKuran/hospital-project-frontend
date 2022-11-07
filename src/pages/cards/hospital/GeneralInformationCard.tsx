@@ -86,7 +86,7 @@ import EmployeeModel from "../../../models/employee/EmployeeModel";
     return (
       <ACard sx={{ marginTop: 4, marginLeft: 0.5, minWidth: 2235 }}>
         <ACardHeader
-          title="Kat Bilgileri"
+          title="Genel Bilgiler"
           rightTitle={DateHelper.getCurrentDate()}
           action={
             <InfoDialog headerText={"Bilgi"}>
