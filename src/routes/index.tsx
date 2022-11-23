@@ -14,7 +14,14 @@ export const RouteList: IRouteItem[] = [
     component: <Empty />,
     name: "Contact Us",
     roles: ["*"]
+  },
+  {
+    path: "/report",
+    component: <Empty />,
+    name: "Karnem",
+    roles: ["Manager"],
   }
+
 ];
 
 const RouteManager = () => {
@@ -22,7 +29,7 @@ const RouteManager = () => {
   // const { getUser } = useContext(UserContext) as IUserContext;
   const getRouteList = () => {
     const all = "*";
-    const currentUser = { role: "*" };
+    const currentUser = { role: "Manager" };
     const currentUserRole = currentUser.role;
     const filterRoute = (route: IRouteItem) => route.roles.includes(currentUserRole) || route.roles.includes(all);
 
