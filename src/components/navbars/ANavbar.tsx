@@ -7,6 +7,7 @@ import BurgerItem from "./BurgerItem";
 import ANavbarItem from "./ANavbarItem";
 import ANotificationItem from "./ANotificationItem";
 import AImageItem from "./AImageItem";
+import ANotificationItemLogin from "./ANotificationItemLogin";
 
 const ANavbar = () => {
   return (
@@ -32,6 +33,9 @@ const ANavbar = () => {
             {RouteManager().routes.map((route, index) => (
               <ANavbarItem route={{ ...route }} key={"navbar" + index} />
             ))}
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <ANotificationItemLogin />
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <ANotificationItem />
