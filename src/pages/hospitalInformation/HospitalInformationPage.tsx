@@ -14,44 +14,22 @@ import ProductsService from "../../services/products/ProductsService";
 import ChurnService from "../../services/artificialIntelligence/ChurnService";
 
 export default function HospitalInformation() {
-    const [alert11, setAlert11] = useState<Boolean>(false);
-    const [alert12, setAlert12] = useState<Boolean>(false);
-    const [alert13, setAlert13] = useState<Boolean>(false);
-    const [alert14, setAlert14] = useState<Boolean>(false);
-    const [alert15, setAlert15] = useState<Boolean>(false);
+
     const [progress1, setProgress1] = useState<Boolean>(false);
     const [button1, setButton1] = useState<Boolean>(false);
     const [count1, setCount1] = useState<Boolean>(false);
     const [count11, setCount11] = useState<Boolean>(false);
     const [dataSource1, setDataSource1] = useState<Boolean>(false);
-
-    const [alert21, setAlert21] = useState<Boolean>(false);
-    const [alert22, setAlert22] = useState<Boolean>(false);
-    const [alert23, setAlert23] = useState<Boolean>(false);
-    const [alert24, setAlert24] = useState<Boolean>(false);
-    const [alert25, setAlert25] = useState<Boolean>(false);
     const [progress2, setProgress2] = useState<Boolean>(false);
     const [button2, setButton2] = useState<Boolean>(false);
     const [count2, setCount2] = useState<Boolean>(false);
     const [count22, setCount22] = useState<Boolean>(false);
     const [dataSource2, setDataSource2] = useState<Boolean>(false);
-
-    const [alert31, setAlert31] = useState<Boolean>(false);
-    const [alert32, setAlert32] = useState<Boolean>(false);
-    const [alert33, setAlert33] = useState<Boolean>(false);
-    const [alert34, setAlert34] = useState<Boolean>(false);
-    const [alert35, setAlert35] = useState<Boolean>(false);
     const [progress3, setProgress3] = useState<Boolean>(false);
     const [button3, setButton3] = useState<Boolean>(false);
     const [count3, setCount3] = useState<Boolean>(false);
     const [count33, setCount33] = useState<Boolean>(false);
     const [dataSource3, setDataSource3] = useState<Boolean>(false);
-
-    const [alert41, setAlert41] = useState<Boolean>(false);
-    const [alert42, setAlert42] = useState<Boolean>(false);
-    const [alert43, setAlert43] = useState<Boolean>(false);
-    const [alert44, setAlert44] = useState<Boolean>(false);
-    const [alert45, setAlert45] = useState<Boolean>(false);
     const [progress4, setProgress4] = useState<Boolean>(false);
     const [button4, setButton4] = useState<Boolean>(false);
     const [count4, setCount4] = useState<Boolean>(false);
@@ -77,24 +55,7 @@ export default function HospitalInformation() {
             }, 1);
             setCount1(true)
         }
-        setInterval(() => {
-            setAlert11(true)
-        }, 2);
-        setInterval(() => {
-            setAlert12(true)
-        }, 7);
-        setInterval(() => {
-            setAlert13(true)
-        }, 111);
-        setInterval(() => {
-            setAlert14(true)
-        }, 16);
-        setInterval(() => {
-            setAlert15(true)
-        }, 20);
-        setInterval(() => {
-            setButton1(true)
-        }, 24);
+       
 
     }
 
@@ -117,21 +78,6 @@ export default function HospitalInformation() {
             }, 2);
             setCount2(true)
         }
-        setInterval(() => {
-            setAlert21(true)
-        }, 3);
-        setInterval(() => {
-            setAlert22(true)
-        }, 7);
-        setInterval(() => {
-            setAlert23(true)
-        }, 1);
-        setInterval(() => {
-            setAlert24(true)
-        }, 1);
-        setInterval(() => {
-            setAlert25(true)
-        }, 2);
         setInterval(() => {
             setButton2(true)
         }, 24);
@@ -157,21 +103,6 @@ export default function HospitalInformation() {
             setCount3(true)
         }
         setInterval(() => {
-            setAlert31(true)
-        }, 3);
-        setInterval(() => {
-            setAlert32(true)
-        }, 7);
-        setInterval(() => {
-            setAlert33(true)
-        }, 11);
-        setInterval(() => {
-            setAlert34(true)
-        }, 16);
-        setInterval(() => {
-            setAlert35(true)
-        }, 2);
-        setInterval(() => {
             setButton3(true)
         }, 24);
     }
@@ -195,21 +126,6 @@ export default function HospitalInformation() {
             }, 2);
             setCount4(true)
         }
-        setInterval(() => {
-            setAlert41(true)
-        }, 3);
-        setInterval(() => {
-            setAlert42(true)
-        }, 1);
-        setInterval(() => {
-            setAlert43(true)
-        }, 6);
-        setInterval(() => {
-            setAlert44(true)
-        }, 12);
-        setInterval(() => {
-            setAlert45(true)
-        }, 2);
         setInterval(() => {
             setButton4(true)
         }, 24);
@@ -235,7 +151,7 @@ export default function HospitalInformation() {
                             textTransform: "uppercase",
                             letterSpacing: "0.2rem",
                             width: "95%",
-                            height: "70px",
+                            height: "50px",
                             border: "none",
                             color: "white",
                             fontSize: 17,
@@ -256,7 +172,7 @@ export default function HospitalInformation() {
                             textTransform: "uppercase",
                             letterSpacing: "0.2rem",
                             width: "95%",
-                            height: "70px",
+                            height: "50px",
                             border: "none",
                             color: "white",
                             fontSize: 17,
@@ -277,7 +193,7 @@ export default function HospitalInformation() {
                             textTransform: "uppercase",
                             letterSpacing: "0.2rem",
                             width: "95%",
-                            height: "70px",
+                            height: "50px",
                             border: "none",
                             color: "white",
                             fontSize: 17,
@@ -298,7 +214,7 @@ export default function HospitalInformation() {
                             textTransform: "uppercase",
                             letterSpacing: "0.2rem",
                             width: "95%",
-                            height: "70px",
+                            height: "50px",
                             border: "none",
                             color: "white",
                             fontSize: 17,

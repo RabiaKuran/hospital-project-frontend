@@ -10,6 +10,7 @@ import TokenHelper from "../../helper/TokenHelper";
 import SignInPage from "../../pages/signIn/SignInPage";
 import SignUpPage from "../../pages/signUp/SignUpPage";
 import HospitalInformation from "../../pages/hospitalInformation/HospitalInformationPage";
+import AddPatient from "../../pages/cards/patients/AddPatient";
 
 const PanelLayoutRoot = styled("div")(({ theme }) => ({
     display: "flex",
@@ -44,6 +45,8 @@ export const PanelLayout = (props: any) => {
                         <Route path="/patients" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HomePage />} />} />
                         <Route path="/hospitalInformation" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HospitalInformation />} />} />
                         <Route path="/menu" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HospitalInformation />} />} />
+                        <Route path="/add-patient" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<AddPatient />} />} />
+
                    </Routes>
                 </Box>
             </PanelLayoutRoot>

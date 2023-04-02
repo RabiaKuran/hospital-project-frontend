@@ -17,7 +17,6 @@ export const DashboardLayout = (props: any) => {
     width: "100%",
   };
 
-
   return (
     <>
       <UserContextProvider>

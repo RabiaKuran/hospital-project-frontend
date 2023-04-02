@@ -34,9 +34,7 @@ const AINavbar = () => {
                             <ANavbarItem route={{ ...route }} key={"navbar" + index} />
                         ))}
                     </Box>
-                    <Box sx={{ flexGrow: 0 }}>
-                        <ANotificationItem></ANotificationItem>
-                    </Box>
+                  
                 </Toolbar>
             </Container>
         </AppBar>

@@ -13,12 +13,14 @@ import ATableRow from "../../../components/tables/ATableRow";
 import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCell";
 import InfoDialog from "../../../components/dialogs/InfoDialog";
 import DateHelper from "../../../helper/DateHelper";
-import ASearch from "../../../components/search/ASearch";
 import PatientsModel from "../../../models/patients/PatientsModel";
 import PatientsService from "../../../services/patients/PatientsService";
 import AButton from "../../../components/buttons/AButton";
 import ATableBody from "../../../components/tables/ATableBody";
-
+import ASearchButton from "../../../components/search/ASearchButton";
+import RedirectHelper from "../../../helper/RedirectHelper";
+import { TablePagination } from "@mui/material";
+import ADivider from "../../../components/divider/ADivider";
 
 export interface PatientsItem {
   hId: number;
@@ -35,19 +37,31 @@ export default function PatientsCard() {
   const [dataSource, setDataSource] = useState<any>([]);
   const [patientName, setPatientName] = useState<any>();
   const [search, setSearch] = useState(1);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   useEffect(() => {
     getPatients();
   }, [patientName]);
 
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   const requestSearch = (searchedVal: any) => {
-    setPatientName(searchedVal);   
+    setPatientName(searchedVal);
   };
   const handleClick = () => {
     setSearch(2);
   };
-
-  const handleClick2 = () => {
-    setSearch(3);
+  const addPatient = () => {
+    RedirectHelper.redirect("/add-patient");
   };
 
   const getPatients = async () => {
@@ -88,26 +102,24 @@ export default function PatientsCard() {
 
       <ACardContent>
         <AGrid>
-          <AGridItem xs={3}>
-            <AGridItem>
-              <ASearch
-                label="Hasta Ara"
-                placeholder="Ad Soyad"
+          <AGridItem xs={4}>
+            <AGrid>
+              <ASearchButton
+                onClick={handleClick}
                 onChange={(e: any) => requestSearch(e.target.value)}
-              ></ASearch>
-
-              <AGridItem marginLeft={37} marginTop={2}>
-                <AButton
-                  text="Ara"
-                  gradient
-                  style={{ width: 95, height: 36, borderRadius: 2 }}
-                  onClick={handleClick}
-                />
-              </AGridItem>
-            </AGridItem>
+              ></ASearchButton>
+            </AGrid>
+            <AGrid>
+              <AButton
+                className="b-button"
+                text="YENI HASTA KAYIT"
+                fullWidth
+                onClick={addPatient}
+              ></AButton>
+            </AGrid>
           </AGridItem>
 
-          <AGridItem xs={9} sx={{ overflow: "hidden" }} marginTop={3}>
+          <AGridItem xs={8} sx={{ overflow: "hidden" }}>
             <ATableContainer>
               <ATable className="basic">
                 <ATableHead>
@@ -139,57 +151,84 @@ export default function PatientsCard() {
                     </HoverStyledTableCell>
                   </ATableRow>
                 </ATableHead>
-                {patients?.map((row) => (
-                  <ATableBody>
-                    {search === 1 ? (
-                      <ATableRow>
-                        <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.adSoyad}
-                        </HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.radSoyad}
-                        </HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.yatisSebebi}
-                        </HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.cadSoyad}
-                        </HoverStyledTableCell>
-                      </ATableRow>
-                    ) : row.adSoyad === patientName ? (
-                      <ATableRow>
-                        <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.adSoyad}
-                        </HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.radSoyad}
-                        </HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.yatisSebebi}
-                        </HoverStyledTableCell>
-                        <HoverStyledTableCell>
-                          {row.cadSoyad}
-                        </HoverStyledTableCell>
-                      </ATableRow>
-                      
-                    ) : (
-                      <AGrid></AGrid>                
-                    )}
-                  </ATableBody>
-                ))}
+                {patients
+                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <ATableBody>
+                      {search === 1 ? (
+                        <ATableRow>
+                          <HoverStyledTableCell>
+                            {row.odaNo}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.adSoyad}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.radSoyad}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.yatisSebebi}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.cadSoyad}
+                          </HoverStyledTableCell>
+                        </ATableRow>
+                      ) : row.adSoyad === patientName ? (
+                        <ATableRow>
+                          <HoverStyledTableCell>
+                            {row.odaNo}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.adSoyad}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.radSoyad}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.yatisSebebi}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.cadSoyad}
+                          </HoverStyledTableCell>
+                        </ATableRow>
+                      ) : (
+                        <AGrid></AGrid>
+                      )}
+                    </ATableBody>
+                  ))}
               </ATable>
             </ATableContainer>
-            {search === 3 ? <AGridItem>
-              Aradığınız kişi bulunamadı
+            <AGridItem xs={12}>
+              <ADivider />
             </AGridItem>
-            :
-            <AGridItem>
-            </AGridItem>
-            
-            }
-            
+            <AGrid
+              sx={{
+                alignItems: "right",
+                justifyContent: "right",
+                marginTop: 1,
+              }}
+            >
+              <AGridItem>
+                {" "}
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 15, 100]}
+                  component="div"
+                  count={dataSource.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+              </AGridItem>
+
+              <AGridItem></AGridItem>
+              <AGridItem></AGridItem>
+            </AGrid>
+            {search === 3 ? (
+              <AGridItem>Aradığınız kişi bulunamadı</AGridItem>
+            ) : (
+              <AGridItem></AGridItem>
+            )}
           </AGridItem>
         </AGrid>
       </ACardContent>

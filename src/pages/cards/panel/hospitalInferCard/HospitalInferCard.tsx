@@ -17,7 +17,7 @@ export default function HospitalInferCard() {
             flexDirection: "column",
             alignItems: "center",
             display: "flex",
-            height: "67vh",
+            height: "80vh",
             width: "60vw",
             background: "#fffff",
             "-webkit-box-shadow": "0px 2px 39px 1px rgba(11,4,99,0.93)",
@@ -25,30 +25,30 @@ export default function HospitalInferCard() {
             backdropFilter: "blur(8.5px)",
             borderRadius: "10px",
             color: "black",
-            textTransform: "uppercase",
-            letterSpacing: "0.4rem",
-            padding: 3
+            letterSpacing: "0.1rem",
+            padding: 2
         }} >
             <ACardContent >
                 <AGridItem xs={12}>
                     <AHeaderLabel
                         text="HASTANE İLE İLGİLİ DURUM BİLGİSİ"
-                        size={5}
+                        size={3}
                         color={ColorPalette.darkestBlue}
-                        sx={{ display: "flex", justifyContent: "center", marginTop: -30 }}
+                        sx={{ display: "flex", justifyContent: "center" }}
                     />
                 </AGridItem>
                 <AGridItem xs={12}>
-                    <img src="33.jpg" width={850} height={350}
+                    <img src="33.jpg" width={"98%"} height={"10%"}
                         style={{
-                            marginTop: 20,
+                            marginTop: 10,
                             borderRadius: 10,
                             boxShadow: "#14163C 0px 0px 10px 0px"
                         }}
                     />
                 </AGridItem>
-                <AGridItem xs={12} sx={{ marginTop: -2 }}>
-                    <p className="letter">
+                <AGridItem xs={12} marginTop="10px" marginBottom="10px">
+
+                    <p className="font-family:courier;" >
                         Buradan hastanede bulunan <strong> odaların müsaitliğini, ürünlerin anlık olarak ne kadarının hastane de bulunduğunu </strong>
                         görebilirsiniz.
                     </p>
