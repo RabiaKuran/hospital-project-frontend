@@ -6,3 +6,16 @@
     margin-left:5px!important;
 
 }
+
+.b-button
+{
+    font-size: 12px;
+    font-weight: bold;
+    margin-right:5px!important;
+    margin-left:35px!important;
+    margin-top: 5% !important;
+    background: linear-gradient(315deg, #20bf55 0%, #01baef 74%)
+
+
+
+}

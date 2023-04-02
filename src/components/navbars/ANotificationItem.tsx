@@ -8,6 +8,6 @@ export default function ANotificationItem() {
   }
 
   return (
-    <h1 onClick={handleLogout} style={{ color: "#000", marginLeft: 25, fontSize: 21.5, marginTop: -7.8 }}>Logout</h1>
+    <h1 onClick={handleLogout} style={{ color: "#fff", marginLeft: 25, fontSize: 18, marginTop: -7.8 }}>Logout</h1>
   );
 } 

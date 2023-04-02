@@ -5,4 +5,7 @@ export default interface PatientsModel {
     cadSoyad: string;
     yatisSebebi: string;
     odaNo: string;
+    birthDate: string,
+    telefon: number,
+    girisTarihi: string,
 }

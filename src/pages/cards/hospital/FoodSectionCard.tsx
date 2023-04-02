@@ -72,7 +72,7 @@ export default function FoodSectionCard(props: IFoodSectionCard) {
           <ImageList sx={{ margin: "12px" }}>
             <ImageListItem key="Subheader" cols={2}>
               <ListSubheader component="div">
-                Kişisel Ürünler Listesi
+                Yiyecek-İçecek Listesi
               </ListSubheader>
             </ImageListItem>
             {itemData.map((item) => (

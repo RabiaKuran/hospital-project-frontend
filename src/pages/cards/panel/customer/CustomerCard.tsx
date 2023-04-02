@@ -18,7 +18,7 @@ export default function CustomerCard() {
             flexDirection: "column",
             alignItems: "center",
             display: "flex",
-            height: "67vh",
+            height: "80vh",
             width: "60vw",
             background: "#fffff",
             "-webkit-box-shadow": "0px 2px 39px 1px rgba(11,4,99,0.93)",
@@ -26,30 +26,29 @@ export default function CustomerCard() {
             backdropFilter: "blur(8.5px)",
             borderRadius: "10px",
             color: "black",
-            textTransform: "uppercase",
-            letterSpacing: "0.4rem",
+            letterSpacing: "0.1rem",
             padding: 3
         }} >
             <ACardContent >
                 <AGridItem xs={12}>
                     <AHeaderLabel
                         text="HASTALARIM"
-                        size={5}
+                        size={3}
                         color={ColorPalette.darkestBlue}
-                        sx={{ display: "flex", justifyContent: "center", marginTop: -30 }}
+                        sx={{ display: "flex", justifyContent: "center" }}
                     />
                 </AGridItem>
                 <AGridItem xs={12}>
-                    <img src="hospital-6633776_1920.png" width={850} height={350}
+                    <img src="hospital-6633776_1920.png" width={"98%"} height={"300px"}
                         style={{
-                            marginTop: 20,
+                            marginTop: 10,
                             borderRadius: 10,
                             boxShadow: "#14163C 0px 0px 20px 0px"
                         }}
                     />
                 </AGridItem>
-                <AGridItem xs={12} sx={{ marginTop: -2 }}>
-                    <p className="letter">
+                <AGridItem xs={12} marginTop="10px" marginBottom="10px">
+                    <p className="font-family:courier;">
                         Buradan <strong>kendi hastalarınız için, oda numaraları, istekleri gibi  </strong>
                         tüm bilgilere ulaşabilirsiniz. Bigilere ulaşabilmek için giriş butonuna tıklayınız.
                     </p>

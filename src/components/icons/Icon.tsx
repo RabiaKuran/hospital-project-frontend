@@ -2,7 +2,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import {
   InfoOutlined,
   ContentPaste,
@@ -25,5 +26,7 @@ export {
   CreditCardOutlined,
   CurrencyExchangeOutlined,
   InfoOutlinedIcon,
-  CloseIcon
+  CloseIcon,
+  AddCircleOutlineIcon,
+  RemoveCircleOutlineIcon
 };

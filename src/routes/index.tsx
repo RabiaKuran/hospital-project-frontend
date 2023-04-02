@@ -1,4 +1,5 @@
 import Empty from "../pages/Empty";
+import SignInPage from "../pages/signIn/SignInPage";
 
 export interface IRouteItem {
   path: string,
@@ -16,11 +17,12 @@ export const RouteList: IRouteItem[] = [
     roles: ["*"]
   },
   {
-    path: "/report",
-    component: <Empty />,
-    name: "Karnem",
-    roles: ["Manager"],
+    path: "/",
+    component: <SignInPage />,
+    name: "Logout",
+    roles: ["*"]
   }
+
 
 ];
 

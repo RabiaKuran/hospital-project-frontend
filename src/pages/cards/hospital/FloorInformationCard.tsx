@@ -8,6 +8,7 @@ import {
   ImageListItem,
   ImageListItemBar,
   ListSubheader,
+  TablePagination,
 } from "@mui/material";
 import AButton from "../../../components/buttons/AButton";
 import AGridItem from "../../../components/grids/AGridItem";
@@ -32,7 +33,8 @@ import ACardHeader from "../../../components/cards/ACardHeader";
 import InfoDialog from "../../../components/dialogs/InfoDialog";
 import DateHelper from "../../../helper/DateHelper";
 import ACardContent from "../../../components/cards/ACardContent";
-import ASearch from "../../../components/search/ASearch";
+import ASearchButton from "../../../components/search/ASearchButton";
+import ADivider from "../../../components/divider/ADivider";
 
 interface IFloorInformationCard {
   progress: Boolean;
@@ -56,7 +58,18 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
   const [dataSource, setDataSource] = React.useState<any>([]);
   const [patientName, setPatientName] = useState<any>();
   const [search, setSearch] = useState(1);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
 
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
   React.useEffect(() => {
     getProducts();
   }, []);
@@ -93,7 +106,7 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
   };
 
   return (
-    <ACard sx={{ marginTop: 4, marginLeft: 0.5, minWidth: 2235 }}>
+    <ACard sx={{ marginTop: 2, minWidth: "100%" }} >
       <ACardHeader
         title="Kat Bilgileri"
         rightTitle={DateHelper.getCurrentDate()}
@@ -108,26 +121,18 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
 
       <ACardContent>
         <AGrid>
-          <AGridItem xs={3}>
-            <AGridItem>
-              <ASearch
-                label="Oda Ara"
-                placeholder="Oda No"
+          <AGridItem xs={4}>
+          <AGrid>
+              <ASearchButton
+                onClick={handleClick}
                 onChange={(e: any) => requestSearch(e.target.value)}
-              ></ASearch>
-
-              <AGridItem marginLeft={37} marginTop={2}>
-                <AButton
-                  text="Ara"
-                  gradient
-                  style={{ width: 95, height: 36, borderRadius: 2 }}
-                  onClick={handleClick}
-                />
-              </AGridItem>
-            </AGridItem>
+              ></ASearchButton>
+            </AGrid>
+             
+           
           </AGridItem>
 
-          <AGridItem xs={9} sx={{ overflow: "hidden" }} marginTop={3}>
+          <AGridItem xs={8} sx={{ overflow: "hidden" }}>
             <ATableContainer>
               <ATable className="basic">
                 <ATableHead>
@@ -155,7 +160,8 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
                   </ATableRow>
                 </ATableHead>
 
-                {products?.map((row) => (
+                {products?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
                   <ATableBody>
                     {search === 1 ? (
                       <ATableRow
@@ -190,6 +196,31 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
                 ))}
               </ATable>
             </ATableContainer>
+            <AGridItem xs={12}>
+              <ADivider />
+            </AGridItem>
+            <AGrid
+              sx={{
+                alignItems: "right",
+                justifyContent: "right",
+                marginTop: 1,
+              }}
+            >
+              <AGridItem>
+                {" "}
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 15, 100]}
+                  component="div"
+                  count={dataSource.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+              </AGridItem>
+              <AGridItem></AGridItem>
+              <AGridItem></AGridItem>
+            </AGrid>
           </AGridItem>
         </AGrid>
       </ACardContent>

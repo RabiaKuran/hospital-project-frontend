@@ -7,7 +7,6 @@ import BurgerItem from "./BurgerItem";
 import ANavbarItem from "./ANavbarItem";
 import ANotificationItem from "./ANotificationItem";
 import AImageItem from "./AImageItem";
-import ANotificationItemLogin from "./ANotificationItemLogin";
 
 const ANavbar = () => {
   return (
@@ -15,7 +14,7 @@ const ANavbar = () => {
       position="static"
       color="default"
       sx={{
-        paddingLeft: "5px",
+        paddingLeft: "3px",
         boxShadow: "0px 4px 18px -2px #d2d2d2",
         background: "linear-gradient(to right, #14163C 0%, #03217B 79%)",
         height: "12%"
@@ -26,19 +25,13 @@ const ANavbar = () => {
           <Box sx={{marginTop:-7}}>
             <AImageItem />
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
             <BurgerItem />
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "end", marginTop: -5 } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "end",marginTop:"-50px" } }}>
             {RouteManager().routes.map((route, index) => (
               <ANavbarItem route={{ ...route }} key={"navbar" + index} />
             ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <ANotificationItemLogin />
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <ANotificationItem />
           </Box>
         </Toolbar>
       </Container>

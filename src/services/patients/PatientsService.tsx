@@ -5,7 +5,7 @@ interface IPatientsService {
     getPatients(): Promise<PatientsModel[]>;
 }
 
-const PATIENTS_API = "api/patients/getall";
+const PATIENTS_API = "api/patient/getall";
 
 const PatientsService: IPatientsService = {
     getPatients: async () => {

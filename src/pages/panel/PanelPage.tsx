@@ -23,7 +23,7 @@ export default function PanelPage() {
             display: "flex",
             alignItems: "center",
             marginLeft: -6,
-            marginTop: 8
+            marginTop: 1
           }}
         >
           <CustomerCard />
@@ -34,7 +34,7 @@ export default function PanelPage() {
             display: "flex",
             alignItems: "center",
             marginLeft: 11,
-            marginTop: 8
+            marginTop: 1
           }}
         >
           <HospitalInferCard/>

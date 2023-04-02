@@ -18,9 +18,25 @@ import ATableHead from "../../../components/tables/ATableHead";
 import ATableRow from "../../../components/tables/ATableRow";
 import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCell";
 import { ColorPalette } from "../../../theme/ColorPalette";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductsModel from "../../../models/products/ProductsModel";
 import ProductsService from "../../../services/products/ProductsService";
+import { styled } from "@mui/material/styles";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import { IconButtonProps } from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import {
+  AddCircleOutlineIcon,
+  RemoveCircleOutlineIcon,
+} from "../../../components/icons/Icon";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Alert } from "@mui/material";
 
 interface IPersonalProductsCard {
   progress: Boolean;
@@ -41,11 +57,17 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
     RedirectHelper.redirect("/dashboard");
   };
 
-  const [products, setProducts] =useState<ProductsModel[]>();
-  const [loading, setLoading] = React.useState(true);
-  const [dataSource, setDataSource] = React.useState<any>([]);
+  const [products, setProducts] = useState<ProductsModel[]>();
+  const [loading, setLoading] = useState(true);
+  const [dataSource, setDataSource] = useState<any>([]);
+  const [count, setCount] = useState(200);
+  const [expanded, setExpanded] = useState(false);
 
-  React.useEffect(() => {
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  useEffect(() => {
     getProducts();
   }, []);
 
@@ -70,45 +92,100 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
     }
   };
 
+  interface ExpandMoreProps extends IconButtonProps {
+    expand: boolean;
+  }
+  const addClick = () => {
+    setCount(count + 1);
+    console.log(count);
+  };
+  const removeClick = () => {
+    setCount(count - 1);
+    console.log(count);
+
+  };
+
+  const ExpandMore = styled((props: ExpandMoreProps) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
+
   return (
-    <ACard sx={{ marginTop: "12px" }}>
+    <ACard sx={{ marginTop: "12px"}}>
       <AGrid>
-        <AGridItem xs={9} sm={12} md={6} xl={6} minWidth={1400}>
-          <ImageList sx={{ margin: "12px" }}>
-            <ImageListItem key="Subheader" cols={2}>
-              <ListSubheader component="div">
-                Kişisel Ürünler Listesi
-              </ListSubheader>
-            </ImageListItem>
-            {itemData.map((item) => (
-              <ImageListItem key={item.img}>
-                <img
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar
-                  title={item.title}
-                  subtitle={item.author}
-                  actionIcon={
-                    <IconButton
-                      sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                      aria-label={`info about ${item.title}`}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                  }
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </AGridItem>
+      {products?.map((row) => (
+                <ATableBody>
+                  {row.urunKategori === "Kişisel Bölüm" ? (
+                   <AGridItem sx={{ marginLeft: "40px", maxHeight: 600, marginBottom:"30px",marginTop:"30px",marginRight: "20px" }}>
+                   <ACard sx={{ maxWidth: 300, maxHeight: 600 }}>
+                     <CardHeader
+                       action={
+                         <IconButton aria-label="settings">
+                           <MoreVertIcon />
+                         </IconButton>
+                       }
+                       title={row.urunAdi}
+                       subheader="24 Mart 2023"
+                     />
+                     <CardMedia
+                       component="img"
+                       height="194"
+                       image="https://www.vitateks.com/images/havlu4.jpg"
+                       alt="Paella dish"
+                     />
+                     <CardContent>
+                       <Typography variant="h6" color="text.secondary">
+                         Mevcut Ürün
+                       </Typography>
+                     </CardContent>
+                     <CardActions>
+                       <IconButton onClick={addClick}>
+                         <AddCircleOutlineIcon />
+                       </IconButton>
+                       <Typography variant="h6" color="text.secondary">
+                         {row.urunAdedi}
+                       </Typography>
+                       <IconButton onClick={removeClick}>
+                         <RemoveCircleOutlineIcon />
+                       </IconButton>
+                       <ExpandMore
+                         expand={expanded}
+                         onClick={handleExpandClick}
+                         aria-expanded={expanded}
+                         aria-label="show more"
+                       >
+                         <ExpandMoreIcon />
+                       </ExpandMore>
+                     </CardActions>
+                     <Collapse in={expanded} timeout="auto" unmountOnExit>
+                       <CardContent>
+                         <Typography variant="h6" color={ColorPalette.red}>
+                           Bilgi: +100
+                         </Typography>
+         
+                         <Typography>ÜRÜN BİLGİSİ BURADA BULUNACAK</Typography>
+                       </CardContent>
+                     </Collapse>
+                   </ACard>
+                 </AGridItem>
+                  ) : (
+                    <AGrid></AGrid>
+                  )}
+                </ATableBody>
+              ))}
+     
+        
         <AGridItem
           sx={{ overflow: "hidden" }}
           minWidth={"%60"}
           marginTop={3}
-          xs={4}
+          xs={6}
         >
           <ATableContainer>
             <ATable className="basic">
@@ -157,7 +234,7 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
                       </HoverStyledTableCell>
                     </ATableRow>
                   ) : (
-                   <AGrid></AGrid>
+                    <AGrid></AGrid>
                   )}
                 </ATableBody>
               ))}

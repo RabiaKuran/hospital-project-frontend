@@ -22,6 +22,11 @@ export const RouteList: IRouteItem[] = [
     component: <Empty />,
     name: "Contact Us",
     roles: ["*"]
+  },{
+    path: "/contact-us",
+    component: <Empty />,
+    name: "Contact Us",
+    roles: ["*"]
   }
 ];
 
