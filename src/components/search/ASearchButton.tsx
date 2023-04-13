@@ -7,10 +7,11 @@ import SearchIcon from "@mui/icons-material/Search";
 interface IASearchButton {
   onClick?: any,
   onChange?:any
+  placeholder:any
 }
 
 export default function ASearchButton(props: IASearchButton) {
-  const { onClick,onChange } = props;
+  const { onClick,onChange,placeholder } = props;
   return (
     <Paper
       component="form"
@@ -18,7 +19,7 @@ export default function ASearchButton(props: IASearchButton) {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Hasta Ara"
+        placeholder={placeholder}
         inputProps={{ "aria-label": "search google maps" }}
         onChange={onChange}
       />

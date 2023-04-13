@@ -11,6 +11,9 @@ import SignInPage from "../../pages/signIn/SignInPage";
 import SignUpPage from "../../pages/signUp/SignUpPage";
 import HospitalInformation from "../../pages/hospitalInformation/HospitalInformationPage";
 import AddPatient from "../../pages/cards/patients/AddPatient";
+import AddProduct from "../../pages/cards/hospital/AddProduct";
+import ProductUpdate from "../../pages/cards/hospital/ProductUpdate";
+import Notifications from "../../pages/cards/notifications/Notifications";
 
 const PanelLayoutRoot = styled("div")(({ theme }) => ({
     display: "flex",
@@ -46,6 +49,9 @@ export const PanelLayout = (props: any) => {
                         <Route path="/hospitalInformation" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HospitalInformation />} />} />
                         <Route path="/menu" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<HospitalInformation />} />} />
                         <Route path="/add-patient" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<AddPatient />} />} />
+                        <Route path="/add-product" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<AddProduct />} />} />
+                        <Route path="/update-product" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ProductUpdate />} />} />
+                        <Route path="/notifications" element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<Notifications />} />} />
 
                    </Routes>
                 </Box>

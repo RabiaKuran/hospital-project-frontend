@@ -11,8 +11,26 @@ import { Alert, Box, Button } from "@mui/material";
 import { useFormik } from "formik";
 import PatientAddService from "../../../services/patients/PatientAddService";
 import AButton from "../../../components/buttons/AButton";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Draggable from 'react-draggable';
+import RedirectHelper from "../../../helper/RedirectHelper";
+function PaperComponent(props: PaperProps) {
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 export default function AddPatient() {
-  const [control, setControl] = useState<Boolean>(false);
+  const [open, setOpen] = useState(false);
 
   const initialValues = {
     adSoyad: "",
@@ -47,10 +65,9 @@ export default function AddPatient() {
     });
     setTimeout(() => {
       console.log("oldu");
-      setControl(true);
+      setOpen(true);
       resetForm();
-      setControl(false);
-    }, 100);
+    }, 200);
   };
   const formik = useFormik({
     initialValues: initialValues,
@@ -59,6 +76,16 @@ export default function AddPatient() {
   });
   const handleChange = (fieldName: any, value: any) => {
     formik.setFieldValue(fieldName, value);
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const patients = () => {
+    RedirectHelper.redirect("/patients");
   };
   return (
     <>
@@ -233,12 +260,32 @@ export default function AddPatient() {
                       fullWidth
                     ></AButton>
                   </AGrid>
-
-                  {control === false ? (
-                    <AGridItem></AGridItem>
-                  ) : (
-                    <Alert onClose={() => {}}>KAYIT BAŞARILI!</Alert>
-                  )}
+                  
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperComponent={PaperComponent}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          Kayıt İşlemi
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Hasta Kayıt Başarılı. Kayıt listesine gidebilirsiniz.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button onClick={patients}>Kayıt Listesi</Button>
+        </DialogActions>
+      </Dialog>
+      {/*<Button variant="outlined" onClick={handleClickOpen}>
+        diolagı gör
+                      </Button> */} 
+               
                 </Grid>
               </Box>
             </>

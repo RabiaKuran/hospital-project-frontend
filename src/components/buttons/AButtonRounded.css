@@ -1,0 +1,86 @@
+.btn-in {
+    border-radius: 20px !important;
+    border: 1px solid #007cba !important;
+    background: linear-gradient(to bottom right, #007cba, #009345) !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    padding: 10px 40px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    margin: 40px !important;
+    font-family: "Barlow", sans-serif !important;
+   
+  }
+  .btn-contact {
+    border-radius: 20px !important;
+    border: 1px solid #007cba !important;
+    background: linear-gradient(to bottom right, #007cba, #009345) !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    padding: 10px 40px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    margin: 40px !important;
+    font-family: "Barlow", sans-serif !important;
+    width: 270px;
+    height: 40px;
+   
+  }
+
+
+.c-button
+{
+    font-size: 18px !important;
+    font-weight: bold;
+    margin-right:5px!important;
+    margin-left:5px!important;
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border: "1px solid white";
+    border-radius: 120px;
+    background: #38598b !important;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px !important;
+    cursor: pointer;
+    letter-spacing: 0.3rem;
+
+}
+
+.d-button {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+    font-family: montserrat !important;
+
+}
+
+.e-button {
+   
+    background-color: #fc676a  !important;
+    border: 1px solid #fc676a  !important;
+    border-radius: 8px  !important;
+    box-shadow: 0 4px 8px 7px #0000001a !important;
+    color: #fff !important;
+    font-family: Roboto !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.12px !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+    text-transform: uppercase !important;
+    height: 48px !important;
+    width: 180px !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+    margin-bottom: 35px !important;
+    margin-top: 40px !important;
+}
+

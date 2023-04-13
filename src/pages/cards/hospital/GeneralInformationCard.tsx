@@ -117,6 +117,7 @@ import ADivider from "../../../components/divider/ADivider";
             <ASearchButton
                onClick={handleClick}
                 onChange={(e: any) => requestSearch(e.target.value)}
+                placeholder={"Ara"}
               ></ASearchButton>
 
             </AGridItem>

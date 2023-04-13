@@ -4,7 +4,7 @@
     font-weight: bold;
     margin-right:5px!important;
     margin-left:5px!important;
-
+    background: linear-gradient(315deg, #20bf55 0%, #01baef 74%) !important
 }
 
 .b-button
@@ -18,4 +18,13 @@
 
 
 
+}
+
+.red-button
+{
+    font-size: 12px;
+    font-weight: bold !important;
+    margin-right:5px!important;
+    margin-left:5px!important;
+    background: #C60608 !important;
 }

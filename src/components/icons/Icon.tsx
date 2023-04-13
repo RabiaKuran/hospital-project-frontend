@@ -4,6 +4,8 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import EditIcon from "@mui/icons-material/Edit"
+
 import {
   InfoOutlined,
   ContentPaste,
@@ -28,5 +30,6 @@ export {
   InfoOutlinedIcon,
   CloseIcon,
   AddCircleOutlineIcon,
-  RemoveCircleOutlineIcon
+  RemoveCircleOutlineIcon,
+  EditIcon
 };
