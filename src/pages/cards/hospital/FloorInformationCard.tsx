@@ -126,6 +126,7 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
               <ASearchButton
                 onClick={handleClick}
                 onChange={(e: any) => requestSearch(e.target.value)}
+                placeholder={"Ara"}
               ></ASearchButton>
             </AGrid>
              

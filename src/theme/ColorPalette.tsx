@@ -15,6 +15,7 @@ export enum ColorPalette {
   white = "#fff",
   purple = "#614D7D",
   green = "#0D776E",
+  greenn="#67be50",
   secondaryGreen = "#02bc77",
   greenBack = "#f0fdf8",
   darkRed = "#A71930",
@@ -39,4 +40,6 @@ export enum ColorPalette {
   blueBerry = "#75A1D0",
   grayy = "#A7A9AC",
   hoverDropdown = "#F7F6FA",
+  background1='linear-gradient(90deg, rgba(255,88,0,1) 0%, rgba(198,6,8,1) 80%, rgba(198,6,8,1) 100%)',
+  background2="linear-gradient(5deg, rgba(255,88,0,1) 0%, rgba(198,6,8,1) 15%, rgba(198,6,8,1) 100%)",
 }

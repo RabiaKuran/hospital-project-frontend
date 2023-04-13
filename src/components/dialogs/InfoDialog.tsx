@@ -13,7 +13,7 @@ interface IInfoDialogProps {
     headerText: string;
     size?: 'small' | 'medium' | 'large' | undefined;
     gradient?: true
-    children: any
+    children?: any
     style?: any
 }
 

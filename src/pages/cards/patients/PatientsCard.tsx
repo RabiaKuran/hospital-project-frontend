@@ -102,11 +102,12 @@ export default function PatientsCard() {
 
       <ACardContent>
         <AGrid>
-          <AGridItem xs={4}>
+          <AGridItem xs={3}>
             <AGrid>
               <ASearchButton
                 onClick={handleClick}
                 onChange={(e: any) => requestSearch(e.target.value)}
+                placeholder={"Hasta"}
               ></ASearchButton>
             </AGrid>
             <AGrid>
@@ -119,7 +120,7 @@ export default function PatientsCard() {
             </AGrid>
           </AGridItem>
 
-          <AGridItem xs={8} sx={{ overflow: "hidden" }}>
+          <AGridItem xs={9} sx={{ overflow: "hidden" }}>
             <ATableContainer>
               <ATable className="basic">
                 <ATableHead>
@@ -146,7 +147,22 @@ export default function PatientsCard() {
                     </HoverStyledTableCell>
                     <HoverStyledTableCell>
                       <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Sorumlu Hemşire
+                        Sorumlu Personel
+                      </AHeaderLabel>
+                    </HoverStyledTableCell>
+                    <HoverStyledTableCell>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
+                        Doğum Tarihi
+                      </AHeaderLabel>
+                    </HoverStyledTableCell>
+                    <HoverStyledTableCell>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
+                        Giriş Tarihi
+                      </AHeaderLabel>
+                    </HoverStyledTableCell>
+                    <HoverStyledTableCell>
+                      <AHeaderLabel size={5} color={ColorPalette.black}>
+                        Telefon
                       </AHeaderLabel>
                     </HoverStyledTableCell>
                   </ATableRow>
@@ -172,6 +188,13 @@ export default function PatientsCard() {
                           <HoverStyledTableCell>
                             {row.cadSoyad}
                           </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.birthDate}
+                          </HoverStyledTableCell><HoverStyledTableCell>
+                            {row.girisTarihi}
+                          </HoverStyledTableCell><HoverStyledTableCell>
+                            {row.telefon}
+                          </HoverStyledTableCell>
                         </ATableRow>
                       ) : row.adSoyad === patientName ? (
                         <ATableRow>
@@ -189,6 +212,13 @@ export default function PatientsCard() {
                           </HoverStyledTableCell>
                           <HoverStyledTableCell>
                             {row.cadSoyad}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.birthDate}
+                          </HoverStyledTableCell><HoverStyledTableCell>
+                            {row.girisTarihi}
+                          </HoverStyledTableCell><HoverStyledTableCell>
+                            {row.telefon}
                           </HoverStyledTableCell>
                         </ATableRow>
                       ) : (
