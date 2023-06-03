@@ -5,6 +5,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import EditIcon from "@mui/icons-material/Edit"
+import SaveIcon from "@mui/icons-material/Save";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 
 import {
   InfoOutlined,
@@ -31,5 +33,7 @@ export {
   CloseIcon,
   AddCircleOutlineIcon,
   RemoveCircleOutlineIcon,
-  EditIcon
+  EditIcon,
+  SaveIcon,
+  DriveFileRenameOutlineIcon
 };
