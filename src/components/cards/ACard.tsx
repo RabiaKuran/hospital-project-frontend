@@ -4,6 +4,9 @@ interface IACardProps {
   children: any
   height?: ACardHeight
   sx?: any;
+  className?: any;
+  onMouseOver?: any;
+  onMouseLeave?: any;
 }
 
 export enum ACardHeight {
@@ -14,7 +17,7 @@ export enum ACardHeight {
 }
 
 export default function ACard(props: IACardProps) {
-  const { children, height,sx } = props;
+  const { children, height, sx, className, onMouseOver, onMouseLeave } = props;
   const style = {
     height,
     padding:"5px",
@@ -22,9 +25,9 @@ export default function ACard(props: IACardProps) {
   };
 
   return (
-    <Card sx={style} raised>
-      {children}
-    </Card>
+    <Card className={className} sx={style} raised onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+    {children}
+  </Card>
   );
 }
 

@@ -1,4 +1,6 @@
-export default interface PatientsModel {
+
+
+export interface data {
     hId: number;
     radSoyad: string;
     adSoyad: string;
@@ -8,4 +10,9 @@ export default interface PatientsModel {
     birthDate: string,
     telefon: number,
     girisTarihi: string,
+}
+export default interface PatientsModel {
+    data: data[];
+    message: string;
+    success: boolean;
 }

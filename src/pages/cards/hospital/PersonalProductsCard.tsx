@@ -83,7 +83,7 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
     setProductName(searchedVal);
   };
   const handleClick = () => {
-    console.log("button")
+    console.log("button");
     setSearch(2);
   };
   const handleChange = (fieldName: any, value: any) => {};
@@ -104,6 +104,9 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
   };
   const notifications = () => {
     RedirectHelper.redirect("/notifications");
+  };
+  const statistics = () => {
+    RedirectHelper.redirect("/statistics");
   };
   const getProducts = async () => {
     try {
@@ -177,29 +180,39 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
           {" "}
           <ACardHeader title="Kişisel Ürünler" />
         </AGridItem>
-        <AGridItem xs={2}  sx={{ marginTop: "20px" }}>
-                <AButton
-                  text="Bildirimler"
-                  gradient
-                  style={{
-                    height: 36,
-                    borderRadius: 1,
-                    fontWeight: "bold",
-                  }}
-                  className="red-button"
-                  onClick={notifications}
-                />
-              </AGridItem>
-        <AGridItem xs={3} sx={{ marginTop: "20px" }}>
+        <AGridItem xs={1} sx={{ marginTop: "20px" }}>
+          <AButton
+            text="Bildirimler"
+            gradient
+            style={{
+              height: 36,
+              borderRadius: 1,
+              fontWeight: "bold",
+            }}
+            className="red-button"
+            onClick={notifications}
+          />
+        </AGridItem>
+        <AGridItem xs={1} sx={{ marginTop: "20px" }}>
+          <AButton
+            text="İstatistik"
+            gradient
+            style={{
+              height: 36,
+              borderRadius: 1,
+              fontWeight: "bold",
+            }}
+            className="red-button"
+            onClick={statistics}
+          />
+        </AGridItem>
+        <AGridItem xs={4} sx={{ marginTop: "20px" }}>
           <ASearchButton
             onClick={handleClick}
             onChange={(e: any) => requestSearch(e.target.value)}
             placeholder={"Ürün Adı"}
           ></ASearchButton>
         </AGridItem>
-        
-     
-      
       </AGrid>
 
       <ACardContent>
@@ -275,8 +288,8 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
                     </Collapse>
                   </ACard>
                 </AGridItem>
-              ) : (
-                row.urunAdi=== productName ? (<AGridItem
+              ) : row.urunAdi === productName ? (
+                <AGridItem
                   sx={{
                     marginLeft: "60px",
                     maxHeight: 500,
@@ -343,7 +356,9 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
                       </CardContent>
                     </Collapse>
                   </ACard>
-                </AGridItem>):(<AGridItem></AGridItem>)
+                </AGridItem>
+              ) : (
+                <AGridItem></AGridItem>
               )}
             </ATableBody>
           ))}

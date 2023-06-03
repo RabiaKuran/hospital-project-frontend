@@ -1,267 +1,310 @@
-import AHeaderLabel from "../../../components/labels/header/AHeaderLabel";
-import ACard from "../../../components/cards/ACard";
-import AGrid from "../../../components/grids/AGrid";
-import AGridItem from "../../../components/grids/AGridItem";
-import ACardContent from "../../../components/cards/ACardContent";
 import { useEffect, useState } from "react";
-import ACardHeader from "../../../components/cards/ACardHeader";
-import { ColorPalette } from "../../../theme/ColorPalette";
-import ATable from "../../../components/tables/ATable";
-import ATableContainer from "../../../components/tables/ATableContainer";
-import ATableHead from "../../../components/tables/ATableHead";
-import ATableRow from "../../../components/tables/ATableRow";
-import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCell";
-import InfoDialog from "../../../components/dialogs/InfoDialog";
-import DateHelper from "../../../helper/DateHelper";
-import PatientsModel from "../../../models/patients/PatientsModel";
+import { Table, Input, Typography, Form, InputNumber, Popconfirm } from "antd";
+import "./table.css";
+import type { SorterResult } from "antd/es/table/interface";
+import type { TableProps } from "antd";
 import PatientsService from "../../../services/patients/PatientsService";
-import AButton from "../../../components/buttons/AButton";
-import ATableBody from "../../../components/tables/ATableBody";
-import ASearchButton from "../../../components/search/ASearchButton";
-import RedirectHelper from "../../../helper/RedirectHelper";
-import { TablePagination } from "@mui/material";
-import ADivider from "../../../components/divider/ADivider";
+import { useTableSearch } from "../../../components/search/useTableSearch";
+import { ColorPalette } from "../../../theme/ColorPalette";
+import ALoadingCard from "../../../components/cards/ALoadingCard";
+import ACard from "../../../components/cards/ACard";
+import ACardInfoButton from "../../../components/cards/ACardInfoButton";
+import {
+  CloseIcon,
+  SaveIcon,
+  DriveFileRenameOutlineIcon,
+} from "../../../components/icons/Icon";
 
-export interface PatientsItem {
-  hId: number;
+interface Item {
+  id: number;
   radSoyad: string;
   adSoyad: string;
   cadSoyad: string;
   yatisSebebi: string;
   odaNo: string;
+  birthDate: string;
+  telefon: number;
+  girisTarihi: string;
 }
 
+const fetchUsers = async () => {
+  const { data } = await PatientsService.getPatients();
+  console.log("fetchUsers");
+  console.log(data);
+  console.log("fetchUsers");
+  return { data };
+};
+interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
+  editing: boolean;
+  dataIndex: string;
+  title: any;
+  inputType: "number" | "text";
+  record: Item;
+  index: number;
+  children: React.ReactNode;
+}
+
+const EditableCell: React.FC<EditableCellProps> = ({
+  editing,
+  dataIndex,
+  title,
+  inputType,
+  record,
+  index,
+  children,
+  ...restProps
+}) => {
+  const inputNode = inputType === "number" ? <InputNumber /> : <Input />;
+
+  return (
+    <td {...restProps}>
+      {editing ? (
+        <Form.Item
+          name={dataIndex}
+          style={{ margin: 0 }}
+          rules={[
+            {
+              required: true,
+              message: `Please Input ${title}!`,
+            },
+          ]}
+        >
+          {inputNode}
+        </Form.Item>
+      ) : (
+        children
+      )}
+    </td>
+  );
+};
+
 export default function PatientsCard() {
-  const [loading, setLoading] = useState(true);
-  const [patients, setPatients] = useState<PatientsModel[]>();
-  const [dataSource, setDataSource] = useState<any>([]);
-  const [patientName, setPatientName] = useState<any>();
-  const [search, setSearch] = useState(1);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [dataSource, setDataSource] = useState<any>();
+  const [ldng, setLdng] = useState(true);
+  const [searchVal, setSearchVal] = useState();
+  const [form] = Form.useForm();
+  const [editingKey, setEditingKey] = useState("");
+  const isEditing = (record: Item) => record?.id?.toString() === editingKey;
+  const [sortedInfo, setSortedInfo] = useState<SorterResult<Item>>({});
+  const { filteredData, loading } = useTableSearch({
+    searchVal,
+    retrieve: fetchUsers,
+  });
   useEffect(() => {
-    getPatients();
-  }, [patientName]);
+    getDatabase();
+  }, []);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  const requestSearch = (searchedVal: any) => {
-    setPatientName(searchedVal);
-  };
-  const handleClick = () => {
-    setSearch(2);
-  };
-  const addPatient = () => {
-    RedirectHelper.redirect("/add-patient");
-  };
-
-  const getPatients = async () => {
+  const getDatabase = async () => {
     try {
-      var patients = await PatientsService.getPatients();
-      const data: PatientsItem[] = [];
-      patients.forEach((item) => {
-        data.push({
-          hId: item.hId,
-          radSoyad: item.radSoyad,
-          adSoyad: item.adSoyad,
-          cadSoyad: item.cadSoyad,
-          yatisSebebi: item.yatisSebebi,
-          odaNo: item.odaNo,
-        });
-      });
-      setDataSource(data);
-      setPatients(patients);
+      var data = await PatientsService.getPatients();
+      setDataSource(data?.data);
     } catch (error) {
-      alert(error);
+      console.error(error);
     } finally {
-      setLoading(false);
+      setLdng(false);
     }
   };
-  return (
-    <ACard>
-      <ACardHeader
-        title="Hastalarım"
-        rightTitle={DateHelper.getCurrentDate()}
-        action={
-          <InfoDialog headerText={"Hasta Bilgi"}>
-            <p style={{ fontSize: 20, color: ColorPalette.gray }}>
-              Burası hastalara ait yatış bilgilerini gösterir
-            </p>
-          </InfoDialog>
-        }
-      />
+  if (ldng) return <ALoadingCard />;
+  const save = async (id: React.Key) => {
+    try {
+    } catch (errInfo) {
+      console.log("Validate Failed:", errInfo);
+    }
+  };
 
-      <ACardContent>
-        <AGrid>
-          <AGridItem xs={3}>
-            <AGrid>
-              <ASearchButton
-                onClick={handleClick}
-                onChange={(e: any) => requestSearch(e.target.value)}
-                placeholder={"Hasta"}
-              ></ASearchButton>
-            </AGrid>
-            <AGrid>
-              <AButton
-                className="b-button"
-                text="YENI HASTA KAYIT"
-                fullWidth
-                onClick={addPatient}
-              ></AButton>
-            </AGrid>
-          </AGridItem>
+  const edit = (record: Partial<Item> & { id: React.Key }) => {
+    form.setFieldsValue({ yatisSebebi: "", ...record });
+    setEditingKey(record?.id.toString());
+  };
 
-          <AGridItem xs={9} sx={{ overflow: "hidden" }}>
-            <ATableContainer>
-              <ATable className="basic">
-                <ATableHead>
-                  <ATableRow>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Oda No
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Ad Soyad
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Refakatçi Adı Soyadı
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Yatış Sebebi
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Sorumlu Personel
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Doğum Tarihi
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Giriş Tarihi
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                    <HoverStyledTableCell>
-                      <AHeaderLabel size={5} color={ColorPalette.black}>
-                        Telefon
-                      </AHeaderLabel>
-                    </HoverStyledTableCell>
-                  </ATableRow>
-                </ATableHead>
-                {patients
-                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <ATableBody>
-                      {search === 1 ? (
-                        <ATableRow>
-                          <HoverStyledTableCell>
-                            {row.odaNo}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.adSoyad}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.radSoyad}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.yatisSebebi}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.cadSoyad}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.birthDate}
-                          </HoverStyledTableCell><HoverStyledTableCell>
-                            {row.girisTarihi}
-                          </HoverStyledTableCell><HoverStyledTableCell>
-                            {row.telefon}
-                          </HoverStyledTableCell>
-                        </ATableRow>
-                      ) : row.adSoyad === patientName ? (
-                        <ATableRow>
-                          <HoverStyledTableCell>
-                            {row.odaNo}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.adSoyad}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.radSoyad}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.yatisSebebi}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.cadSoyad}
-                          </HoverStyledTableCell>
-                          <HoverStyledTableCell>
-                            {row.birthDate}
-                          </HoverStyledTableCell><HoverStyledTableCell>
-                            {row.girisTarihi}
-                          </HoverStyledTableCell><HoverStyledTableCell>
-                            {row.telefon}
-                          </HoverStyledTableCell>
-                        </ATableRow>
-                      ) : (
-                        <AGrid></AGrid>
-                      )}
-                    </ATableBody>
-                  ))}
-              </ATable>
-            </ATableContainer>
-            <AGridItem xs={12}>
-              <ADivider />
-            </AGridItem>
-            <AGrid
-              sx={{
-                alignItems: "right",
-                justifyContent: "right",
-                marginTop: 1,
-              }}
+  const cancel = () => {
+    setEditingKey("");
+  };
+  const clearAll = () => {
+    setSortedInfo({});
+  };
+  const handleChange: TableProps<Item>["onChange"] = (
+    pagination,
+    filters,
+    sorter
+  ) => {
+    console.log("Various parameters", pagination, filters, sorter);
+    setSortedInfo(sorter as SorterResult<Item>);
+  };
+  const setAgeSort = () => {
+    setSortedInfo({
+      order: "descend",
+      columnKey: "id",
+    });
+  };
+
+  const userColumns = [
+    {
+      title: "Hasta Id",
+      dataIndex: "id",
+      key: "id",
+      width: "5%",
+      sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+      sortOrder: sortedInfo.columnKey === "id" ? sortedInfo.order : null,
+    },
+    {
+      title: "Refakatçi Adı",
+      dataIndex: "radSoyad",
+      key: "radSoyad",
+      width: "10%",
+      editable: true,
+      sorter: (a: { radSoyad: string }, b: { radSoyad: string }) =>
+        a.radSoyad.length - b.radSoyad.length,
+      sortOrder: sortedInfo.columnKey === "radSoyad" ? sortedInfo.order : null,
+    },
+
+    {
+      title: "Hasta Ad Soyad",
+      dataIndex: "adSoyad",
+      key: "adSoyad",
+      width: "15%",
+      editable: true,
+      sorter: (a: { adSoyad: string }, b: { adSoyad: string }) =>
+        a.adSoyad.length - b.adSoyad.length,
+      sortOrder: sortedInfo.columnKey === "adSoyad" ? sortedInfo.order : null,
+    },
+    {
+      title: "Çalışan Ad Soyadı",
+      dataIndex: "cadSoyad",
+      key: "cadSoyad",
+      width: "15%",
+      editable: true,
+      sorter: (a: { cadSoyad: string }, b: { cadSoyad: string }) =>
+        a.cadSoyad.length - b.cadSoyad.length,
+      sortOrder: sortedInfo.columnKey === "cadSoyad" ? sortedInfo.order : null,
+    },
+
+    {
+      title: "Yatış Sebebi",
+      dataIndex: "yatisSebebi",
+      key: "yatisSebebi",
+      width: "10%",
+      editable: true,
+      sorter: (a: { yatisSebebi: string }, b: { yatisSebebi: string }) =>
+        a.yatisSebebi.length - b.yatisSebebi.length,
+      sortOrder:
+        sortedInfo.columnKey === "yatisSebebi" ? sortedInfo.order : null,
+    },
+    {
+      title: "Oda Numara",
+      dataIndex: "odaNo",
+      key: "odaNo",
+      width: "5%",
+      editable: true,
+      sorter: (a: { odaNo: string }, b: { odaNo: string }) =>
+        a.odaNo.length - b.odaNo.length,
+      sortOrder: sortedInfo.columnKey === "odaNo" ? sortedInfo.order : null,
+    },
+    {
+      title: "Doğum Tarihi",
+      dataIndex: "birthDate",
+      key: "birthDate",
+      width: "10%",
+      editable: true,
+      sorter: (a: { birthDate: string }, b: { birthDate: string }) =>
+        a.birthDate.length - b.birthDate.length,
+      sortOrder: sortedInfo.columnKey === "birthDate" ? sortedInfo.order : null,
+    },
+    {
+      title: "Telefon Numarası",
+      dataIndex: "telefon",
+      key: "telefon",
+      width: "10%",
+      editable: true,
+      sorter: (a: { telefon: number }, b: { telefon: number }) =>
+        a.telefon - b.telefon,
+      sortOrder: sortedInfo.columnKey === "telefon" ? sortedInfo.order : null,
+    },
+
+    {
+      title: "Giriş Tarihi",
+      dataIndex: "girisTarihi",
+      key: "girisTarihi",
+      width: "10%",
+      editable: true,
+      sorter: (a: { girisTarihi: string }, b: { girisTarihi: string }) =>
+        a.girisTarihi.length - b.girisTarihi.length,
+      sortOrder:
+        sortedInfo.columnKey === "girisTarihi" ? sortedInfo.order : null,
+    },
+    {
+      title: "Edit",
+      dataIndex: "operation",
+      width: "10%",
+      render: (_: any, record: Item) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <a>
+                <CloseIcon sx={{ color: ColorPalette.red }}></CloseIcon>
+              </a>
+            </Popconfirm>
+            <Typography.Link
+              onClick={() => save(record.id.toString())}
+              style={{ marginLeft: 10 }}
             >
-              <AGridItem>
-                {" "}
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 15, 100]}
-                  component="div"
-                  count={dataSource.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </AGridItem>
-
-              <AGridItem></AGridItem>
-              <AGridItem></AGridItem>
-            </AGrid>
-            {search === 3 ? (
-              <AGridItem>Aradığınız kişi bulunamadı</AGridItem>
-            ) : (
-              <AGridItem></AGridItem>
-            )}
-          </AGridItem>
-        </AGrid>
-      </ACardContent>
+              <SaveIcon sx={{ color: ColorPalette.greenn }}></SaveIcon>
+            </Typography.Link>
+          </span>
+        ) : (
+          <Typography.Link
+            disabled={editingKey !== ""}
+            onClick={() => edit(record)}
+            style={{ marginLeft: 12 }}
+          >
+            <DriveFileRenameOutlineIcon sx={{ color: ColorPalette.greenn }} />
+          </Typography.Link>
+        );
+      },
+    },
+  ];
+  const mergedColumns = userColumns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record: Item) => ({
+        record,
+        inputType: col.dataIndex === "text",
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+      }),
+    };
+  });
+  return (
+    <ACard className="table">
+      <ACardInfoButton
+        text={"Hastalar Listesi"}
+        onChange={(e: any) => setSearchVal(e.target.value)}
+      ></ACardInfoButton>
+      <Form form={form} component={false}>
+        <Table
+          className="table"
+          rowKey="name"
+          dataSource={filteredData}
+          columns={mergedColumns}
+          loading={loading}
+          rowClassName="editable-row"
+          pagination={{
+            onChange: cancel,
+          }}
+          bordered
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          onChange={handleChange}
+        ></Table>
+      </Form>
     </ACard>
   );
 }

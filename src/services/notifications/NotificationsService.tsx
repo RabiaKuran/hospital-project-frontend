@@ -1,5 +1,4 @@
 import NotificationsGetAllModel from "../../models/notifications/NotificationsGetAllModel";
-import ProductsModel from "../../models/products/ProductsModel";
 import ApiClient from "../ApiClient";
 
 interface INotificationsService {
