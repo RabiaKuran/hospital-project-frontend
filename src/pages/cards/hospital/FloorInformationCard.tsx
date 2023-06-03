@@ -37,7 +37,6 @@ import ASearchButton from "../../../components/search/ASearchButton";
 import ADivider from "../../../components/divider/ADivider";
 
 interface IFloorInformationCard {
-  progress: Boolean;
   button: Boolean;
 }
 export interface AverageRecencyCltvPRecencyItem {
@@ -48,11 +47,7 @@ export interface AverageRecencyCltvPRecencyItem {
 }
 
 export default function FloorInformationCard(props: IFloorInformationCard) {
-  const { progress, button } = props;
-
-  const explore = () => {
-    RedirectHelper.redirect("/dashboard");
-  };
+ 
   const [products, setProducts] = useState<FloorModel[]>();
   const [loading, setLoading] = React.useState(true);
   const [dataSource, setDataSource] = React.useState<any>([]);

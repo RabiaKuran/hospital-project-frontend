@@ -24,7 +24,6 @@ import ADivider from "../../../components/divider/ADivider";
 
   
   interface IGeneralInformationCard {
-    progress: Boolean;
     button: Boolean;
   }
   export interface AverageRecencyCltvPRecencyItem {
@@ -37,11 +36,7 @@ import ADivider from "../../../components/divider/ADivider";
   }
   
   export default function GeneralInformationCard(props: IGeneralInformationCard) {
-    const { progress, button } = props;
-  
-    const explore = () => {
-      RedirectHelper.redirect("/dashboard");
-    };
+
     const [products, setProducts] = useState<EmployeeModel[]>();
     const [loading, setLoading] = React.useState(true);
     const [dataSource, setDataSource] = React.useState<any>([]);

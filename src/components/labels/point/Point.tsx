@@ -12,5 +12,5 @@ export default function Point({ fill }: IPointProps) {
 }
 
 Point.defaultProps = {
-    fill: ColorPalette.albarakaOrange
+    fill: ColorPalette.orange
 }

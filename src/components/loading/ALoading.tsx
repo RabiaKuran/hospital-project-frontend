@@ -4,7 +4,7 @@ import './ALoading.css'
 export default function ALoading() {
     return (
         <div className='loading-container'>
-            <CircularProgress sx={{ color: ColorPalette.albarakaOrange }} />
+            <CircularProgress sx={{ color: ColorPalette.orange }} />
         </div>
     )
 }

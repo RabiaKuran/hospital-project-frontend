@@ -42,11 +42,10 @@ import ProductUpdate from "./ProductUpdate";
 import ASearchButton from "../../../components/search/ASearchButton";
 import ACardContent from "../../../components/cards/ACardContent";
 import ACardHeader from "../../../components/cards/ACardHeader";
-import InfoDialog from "../../../components/dialogs/InfoDialog";
-import DateHelper from "../../../helper/DateHelper";
+
 
 interface IPersonalProductsCard {
-  progress: Boolean;
+  
   button: Boolean;
 }
 
@@ -61,12 +60,6 @@ export interface ProductsItem {
 }
 
 export default function PersonalProductsCard(props: IPersonalProductsCard) {
-  const { progress, button } = props;
-
-  const explore = () => {
-    RedirectHelper.redirect("/dashboard");
-  };
-
   const [products, setProducts] = useState<ProductsModel[]>();
   const [loading, setLoading] = useState(true);
   const [dataSource, setDataSource] = useState<any>([]);
