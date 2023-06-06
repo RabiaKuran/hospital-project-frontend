@@ -3,12 +3,9 @@ import DashboardNavbar from "../../../components/navbars/DashboardNavbar";
 import AGrid from "../../../components/grids/AGrid";
 import ACard from "../../../components/cards/ACard";
 import AGridItem from "../../../components/grids/AGridItem";
-import ACardHeader from "../../../components/cards/ACardHeader";
-import InfoDialog from "../../../components/dialogs/InfoDialog";
-import DateHelper from "../../../helper/DateHelper";
+
 import { ColorPalette } from "../../../theme/ColorPalette";
 import { TextField, TablePagination, Typography } from "@mui/material";
-import AButton from "../../../components/buttons/AButton";
 import AIconButton from "../../../components/buttons/AIconButton";
 import ADivider from "../../../components/divider/ADivider";
 import AHeaderLabel from "../../../components/labels/header/AHeaderLabel";
@@ -18,14 +15,16 @@ import ATableContainer from "../../../components/tables/ATableContainer";
 import ATableHead from "../../../components/tables/ATableHead";
 import ATableRow from "../../../components/tables/ATableRow";
 import HoverStyledTableCell from "../../../components/tables/HoverStyledTableCell";
-import ProductUpdate from "../hospital/ProductUpdate";
 import NotificationsGetAllModel from "../../../models/notifications/NotificationsGetAllModel";
 import NotificationsService from "../../../services/notifications/NotificationsService";
 import CloseIcon from "@mui/icons-material/Close";
 import SaveIcon from "@mui/icons-material/Save";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import Badge from "@mui/material/Badge";
+import NotificationsUpdateService from "../../../services/notifications/NotificationsUpdateService";
 
 export interface NotificationsItem {
+  id: number;
   urunId: number;
   urunKategori: string;
   urunAdi: string;
@@ -33,6 +32,8 @@ export interface NotificationsItem {
   notifications: string;
   tarih: string;
   durum: string;
+  quantity: number;
+  odaNo: string;
 }
 export default function Notifications() {
   const [notifications, setNotifications] =
@@ -42,17 +43,33 @@ export default function Notifications() {
   const [page, setPage] = useState(0);
   const [edit, setEdit] = useState<any>();
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  
-
+  const [approvalCount, setApprovalCount] = useState(0);
+  const getApprovalCount = () => {
+    let count = 0;
+    notifications?.forEach((row) => {
+      if (row.durum === "Onaylanmadı") {
+        count++;
+      }
+    });
+    return count;
+  };
   useEffect(() => {
     getNotifications();
   }, []);
+
+  useEffect(() => {
+    const count = getApprovalCount();
+    console.log(count);
+    setApprovalCount(count);
+  }, [notifications]);
+
   const getNotifications = async () => {
     try {
       var products = await NotificationsService.getNotifications();
       const data: NotificationsItem[] = [];
       products.forEach((item) => {
         data.push({
+          id: item.id,
           urunId: item.urunId,
           urunKategori: item.urunKategori,
           urunAdi: item.urunAdi,
@@ -60,14 +77,12 @@ export default function Notifications() {
           tarih: item.tarih,
           notifications: item.notifications,
           durum: item.durum,
+          quantity: item.quantity,
+          odaNo: item.odaNo,
         });
       });
-      console.log(dataSource);
       setDataSource(data);
-      console.log(dataSource);
-
       setNotifications(products);
-      console.log(products);
     } catch (error) {
       alert(error);
     } finally {
@@ -84,10 +99,30 @@ export default function Notifications() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const handleChange = (fieldName: any, value: any) => {};
-  function handleToggleYourList(artworkId: number) {
-    console.log(artworkId);
-  }
+
+  const handleChange = (fieldName: string, value: any) => {
+    setNotifications((prevNotifications) => {
+      const updatedNotifications = prevNotifications?.map((notification) => {
+        if (notification.id === edit) {
+          return { ...notification, [fieldName]: value };
+        }
+        return notification;
+      });
+      return updatedNotifications;
+    });
+  };
+
+  const handleSave = async (row: NotificationsItem) => {
+    try {
+      const updatedRow = { ...row, durum: "Onaylandı" };
+      await NotificationsUpdateService.updateNotifications(updatedRow);
+      console.log("Güncelleme başarılı!");
+      setEdit(0);
+    } catch (error) {
+      console.error("Güncelleme hatası:", error);
+    }
+  };
+
   return (
     <>
       <DashboardNavbar />
@@ -96,17 +131,38 @@ export default function Notifications() {
 
         <AGridItem xs={12} sm={12} md={12} xl={12} minHeight={750}>
           <ACard>
-            <ACardHeader
-              title="Bildirimler"
-              rightTitle={DateHelper.getCurrentDate()}
-              action={
-                <InfoDialog headerText={"Bilgi"}>
-                  <p style={{ fontSize: 20, color: ColorPalette.gray }}>
-                    Burası katlara ait istek bilgilerini içerir.
-                  </p>
-                </InfoDialog>
-              }
-            />
+            <AGrid>
+              <AGridItem>
+                <AGrid>
+                  <Typography
+                    style={{
+                      textAlign: "left",
+                      fontWeight: "bolder",
+                      fontSize: 20,
+                      marginLeft: 40,
+
+                      marginTop: 20,
+                    }}
+                  >
+                    Bildirimler
+                  </Typography>
+
+                  <Badge
+                    badgeContent={approvalCount}
+                    max={999}
+                    color="error"
+                    style={{
+                      textAlign: "left",
+                      fontWeight: "bolder",
+                      fontSize: 20,
+                      marginLeft: 30,
+                      marginTop: 37,
+                    }}
+                  />
+                </AGrid>
+              </AGridItem>
+            </AGrid>
+
             <AGrid>
               <AGridItem
                 sx={{ overflow: "hidden" }}
@@ -118,6 +174,11 @@ export default function Notifications() {
                   <ATable className="basic">
                     <ATableHead>
                       <ATableRow>
+                        <HoverStyledTableCell>
+                          <AHeaderLabel size={5} color={ColorPalette.black}>
+                            Oda Numarası
+                          </AHeaderLabel>
+                        </HoverStyledTableCell>
                         <HoverStyledTableCell>
                           <AHeaderLabel size={5} color={ColorPalette.black}>
                             Ürün Id
@@ -178,73 +239,76 @@ export default function Notifications() {
                             key={i}
                           >
                             <HoverStyledTableCell>
-                              {row.urunId}
+                              {row?.odaNo}
                             </HoverStyledTableCell>
                             <HoverStyledTableCell>
-                              {row.urunKategori}
+                              {row?.urunId}
                             </HoverStyledTableCell>
                             <HoverStyledTableCell>
-                              {row.urunAdi}
+                              {row?.urunKategori}
                             </HoverStyledTableCell>
                             <HoverStyledTableCell>
-                              {row.urunAdedi}
+                              {row?.urunAdi}
                             </HoverStyledTableCell>
                             <HoverStyledTableCell>
-                              {row.tarih}
+                              {row?.quantity}
+                            </HoverStyledTableCell>
+                            <HoverStyledTableCell>
+                              {row?.tarih}
                             </HoverStyledTableCell>
 
                             <HoverStyledTableCell>
-                              {row.notifications}
+                              {row?.notifications}
                             </HoverStyledTableCell>
-                           
+
                             <HoverStyledTableCell>
-                              {edit === row?.urunId ? (
+                              {edit === row?.id ? (
                                 <TextField
                                   id="durum"
                                   name="durum"
                                   variant="standard"
                                   style={{ minWidth: "160px" }}
-                                  value={row.durum}
+                                  value={row?.durum}
                                   onChange={(e) =>
                                     handleChange("durum", e.target.value)
                                   }
+                                  InputProps={{ readOnly: false }}
                                 />
                               ) : (
-
-                                <AGridItem>{row.durum==="Onaylandı" ? ( <Typography color={ColorPalette.greenn}>
-                                  {row.durum}
-                                </Typography>):( <Typography color={ColorPalette.red}>
-                          {row.durum}
-                        </Typography>)}</AGridItem>
+                                <AGridItem>
+                                  {row?.durum === "Onaylandı" ? (
+                                    <Typography color={ColorPalette.greenn}>
+                                      {row?.durum}
+                                    </Typography>
+                                  ) : (
+                                    <>
+                                      <Typography color={ColorPalette.red}>
+                                        {row?.durum}
+                                      </Typography>{" "}
+                                    </>
+                                  )}
+                                </AGridItem>
                               )}
                             </HoverStyledTableCell>
                             <HoverStyledTableCell key={"tableHeader#" + i}>
-                              {edit === row?.urunId ? (
+                              {edit === row?.id ? (
                                 <AGridItem>
-                                  <AIconButton
-                                    onClick={() => [
-                                      handleToggleYourList(row?.urunId),
-                                      setEdit(0),
-                                    ]}
-                                  >
+                                  <AIconButton onClick={() => [setEdit(0)]}>
                                     <CloseIcon
                                       sx={{ color: ColorPalette.red }}
                                     ></CloseIcon>
                                   </AIconButton>
 
-                                  <AIconButton>
+                                  <AIconButton
+                                    onClick={() => [handleSave(row)]}
+                                  >
                                     <SaveIcon
                                       sx={{ color: ColorPalette.greenn }}
                                     ></SaveIcon>
                                   </AIconButton>
                                 </AGridItem>
                               ) : (
-                                <AIconButton
-                                  onClick={() => [
-                                    handleToggleYourList(row?.urunId),
-                                    setEdit(row?.urunId),
-                                  ]}
-                                >
+                                <AIconButton onClick={() => [setEdit(row?.id)]}>
                                   <DriveFileRenameOutlineIcon
                                     sx={{ color: ColorPalette.greenn }}
                                   />
@@ -273,7 +337,7 @@ export default function Notifications() {
                     <TablePagination
                       rowsPerPageOptions={[5, 10, 15, 100]}
                       component="div"
-                      count={dataSource.length}
+                      count={dataSource?.length}
                       rowsPerPage={rowsPerPage}
                       page={page}
                       onPageChange={handleChangePage}
@@ -283,9 +347,7 @@ export default function Notifications() {
 
                   <AGridItem></AGridItem>
                   <AGridItem></AGridItem>
-                 
                 </AGrid>
-              
               </AGridItem>
             </AGrid>
           </ACard>

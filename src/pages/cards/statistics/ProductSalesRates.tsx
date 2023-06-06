@@ -14,7 +14,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import ProductsModel from "../../../models/products/ProductsModel";
 import ProductsService from "../../../services/products/ProductsService";
 

@@ -166,8 +166,6 @@ export default function ProductUpdate(props: IProductUpdateProps) {
             row.urunResmi === urunResmi &&
             (id = row?.id)
         ),
-        console.log("kdsfls"),
-        console.log(id),
         await ProductUpdateService.updateProduct({
           id: id,
           urunId: values.urunId,

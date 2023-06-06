@@ -3,7 +3,7 @@ import { InfoOutlinedIcon } from "../icons/Icon";
 import "./ACardHeader.css";
 
 interface IACardHeaderProps {
-  title: string;
+  title?: string;
   action?: any;
   sx?: any;
   rightTitle?: any;

@@ -75,45 +75,15 @@ export default function ACardInfoButton(props: IACardInfoButton) {
   };
   return (
     <AGrid marginBottom={2} marginTop={2}>
-      <AGridItem xs={3}>
+      
+      <AGridItem xs={6} marginLeft={3}>
         {" "}
         <Typography style={{ textAlign: "left" }} variant="h5">
           {text}
         </Typography>
       </AGridItem>
-      <AGridItem xs={2} marginRight={6} >
-        <Button
-        style={{ textAlign: "left" }}
-          id="demo-customized-button"
-          aria-controls={open ? "demo-customized-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          variant="contained"
-          disableElevation
-          onClick={handleClick}
-          color="success"
-          endIcon={<KeyboardArrowDownIcon />}
-        >
-          EXPORT
-        </Button>
-        <StyledMenu
-          id="demo-customized-menu"
-          MenuListProps={{
-            "aria-labelledby": "demo-customized-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose} disableRipple>
-            To CSV
-          </MenuItem>
-          <MenuItem onClick={handleClose} disableRipple>
-            To Excel
-          </MenuItem>
-        </StyledMenu>
-      </AGridItem>
-      <AGridItem xs={6}>
+    
+      <AGridItem xs={5}>
         <FormControl variant="standard">
           <Input
             type="text"
