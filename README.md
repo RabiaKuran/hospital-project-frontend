@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+![screen1](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/a24e4695-3c53-4bc2-905b-977d3036187a)
+![screen2](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/cdd20f9e-81ba-43ab-b2f5-c7e78d5cabf0)
+![screen3](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/bd4581ad-5306-4934-bd1f-587854ffc535)
+![screen4](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/5447b75f-d476-49db-bf52-971b774038c6)
+![screen5](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/3195b7cd-0eee-4735-a771-922e6c9cb5af)
+![screen6](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/1b8be3f2-7f10-4a12-b65b-b45a6a15d30c)
+![screen7](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/388febfc-6973-4916-9d13-27242a865418)
+![screen10](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/4b79af6a-4bdb-4c79-8486-4aa61c8ae951)
+![screen11](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/a0d925d4-8162-45c7-b3e1-a521f8b9a505)
+![screen12](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/390bfd4c-13b6-442d-8996-757f8ccba625)
+![screen8](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/55878c91-e822-4964-b079-559d0d40ffc9) ![screen9](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/2545455c-e0a5-4801-adf5-c88ae9541f43)
+
+
+
