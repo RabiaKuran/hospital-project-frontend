@@ -1,0 +1,12 @@
+.card {
+    background-color: "#fff";
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: 758px;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    vertical-align: middle;
+  }

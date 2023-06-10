@@ -14,11 +14,13 @@ import {
   DialogTitle,
   Link,
   TextField,
+  Typography,
 } from "@mui/material";
 import AHeaderLabel from "../../components/labels/header/AHeaderLabel";
 import { ColorPalette } from "../../theme/ColorPalette";
 import TokenService from "../../services/token/TokenService";
 import "../../components/labels/horizontalRule/horizontalRule.css";
+import AInput from "../../components/inputs/AInput";
 
 export default function SignInPage() {
   const [userName, setUserName] = useState("");
@@ -67,6 +69,7 @@ export default function SignInPage() {
           height: "106vh",
           backgroundImage: `url(${"back.jpg"})`,
         }}
+        spacing={2}
       >
         <AGridItem xs={1} />
         <AGridItem
@@ -105,28 +108,24 @@ export default function SignInPage() {
                 width: "100%",
               }}
             >
-              <AHeaderLabel
-                text="HOSPİTAL"
-                size={5}
-                color={ColorPalette.white}
-                sx={{ height: "5%", fontSize: 52 }}
-              />
-              <AGrid
+              <Box
                 sx={{
-                  height: "40vh",
-                  backgroundImage: `url(${"bilgiislem.png"})`,
-                
+                  paddingTop: "15px",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
                 }}
               >
-                <AGridItem xs={1} />
-                <AGridItem
-                  xs={5}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                />{" "}
-              </AGrid>
+                <AHeaderLabel
+                  text="HOSPİTAL"
+                  size={5}
+                  color={ColorPalette.white}
+                  sx={{ height: "5%", fontSize: 52 }}
+                />
+              </Box>
+
+              <Box sx={{ padding: "5%" }}>
+                <img src="bilgiislem.png" width="100%" height="100%" />
+              </Box>
             </Box>
           </Box>
         </AGridItem>
@@ -151,16 +150,27 @@ export default function SignInPage() {
               borderRadius: "10px",
               color: "#FFFFFF",
               textTransform: "uppercase",
-              letterSpacing: "0.4rem",
+              letterSpacing: "0.1rem",
               padding: 3,
+              position: "relative",
             }}
+            component="form"
           >
-            <AHeaderLabel
-              text="Login Information"
-              size={6}
-              color={ColorPalette.white}
-              sx={{ marginTop: 40, height: "15%" }}
-            />
+            <Box
+              sx={{
+                paddingTop: "15px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+              }}
+            >
+              <AHeaderLabel
+                text="Login Information"
+                size={6}
+                color={ColorPalette.white}
+                sx={{ marginTop: 30, height: "15%", marginBottom: 20 }}
+              />
+            </Box>
+
             <Box
               component="form"
               noValidate
@@ -171,49 +181,26 @@ export default function SignInPage() {
                 alignItems: "center",
                 height: "89%",
                 width: "100%",
+                position: "relative",
               }}
             >
               <>
-                <TextField
-                  margin="normal"
+                <AInput
                   fullWidth
-                  id="userName"
-                  label="User Name"
+                  placeholder={"User Name"}
                   type="text"
                   autoComplete="none"
-                  InputLabelProps={{
-                    style: { color: "#fff" },
-                  }}
-                  InputProps={{
-                    style: { color: "#00003f" },
-                  }}
                   value={userName}
                   onChange={(e: any) => {
                     setUserName(e.target.value);
                   }}
-                  style={{
-                    backgroundColor: "#ffffff26 ",
-                    width: "80%",
-                    border: "none",
-                    outline: "none",
-                    fontSize: "1rem",
-                    fontWeight: "bold",
-                    display: "center",
-                  }}
                 />
-                <TextField
-                  margin="normal"
+                <AInput
                   fullWidth
                   name="password"
-                  label="Password"
+                  placeholder="Password"
                   type="password"
                   id="password"
-                  InputLabelProps={{
-                    style: { color: "#fff" },
-                  }}
-                  InputProps={{
-                    style: { color: "#00003f" },
-                  }}
                   inputProps={{
                     autoComplete: "new-password",
                     form: {
@@ -224,15 +211,6 @@ export default function SignInPage() {
                   onChange={(e: any) => {
                     setPassword(e.target.value);
                   }}
-                  style={{
-                    backgroundColor: "#ffffff26 ",
-                    width: "80%",
-                    border: "none",
-                    outline: "none",
-                    fontSize: "1rem",
-                    fontWeight: "bold",
-                    marginTop: -18,
-                  }}
                 />
                 <AButton
                   text="Sign In"
@@ -242,7 +220,7 @@ export default function SignInPage() {
                     background:
                       "linear-gradient(to right, #14163C 0%, #03217B 79%)",
                     textTransform: "uppercase",
-                    letterSpacing: "0.2rem",
+                    letterSpacing: "0.1rem",
                     width: "65%",
                     height: "13%",
                     border: "none",
@@ -260,7 +238,7 @@ export default function SignInPage() {
                   color={ColorPalette.white}
                   style={{
                     textDecoration: "none",
-                    marginTop: 30,
+                    marginTop: 40,
                     fontSize: 15,
                     fontWeight: "bold",
                   }}
@@ -274,7 +252,7 @@ export default function SignInPage() {
                   color={ColorPalette.white}
                   style={{
                     textDecoration: "none",
-                    marginTop: 8,
+                    marginTop: 1,
                     fontSize: 15,
                     fontWeight: "bold",
                   }}

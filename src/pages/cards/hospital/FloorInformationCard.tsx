@@ -1,22 +1,6 @@
-import {
-  Stack,
-  LinearProgress,
-  Alert,
-  AlertTitle,
-  IconButton,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  ListSubheader,
-  TablePagination,
-} from "@mui/material";
-import AButton from "../../../components/buttons/AButton";
+import { TablePagination } from "@mui/material";
 import AGridItem from "../../../components/grids/AGridItem";
-import RedirectHelper from "../../../helper/RedirectHelper";
-import InfoIcon from "@mui/icons-material/Info";
 import React, { useState } from "react";
-import ProductsModel from "../../../models/products/ProductsModel";
-import ProductsService from "../../../services/products/ProductsService";
 import ACard from "../../../components/cards/ACard";
 import AGrid from "../../../components/grids/AGrid";
 import AHeaderLabel from "../../../components/labels/header/AHeaderLabel";
@@ -47,7 +31,6 @@ export interface AverageRecencyCltvPRecencyItem {
 }
 
 export default function FloorInformationCard(props: IFloorInformationCard) {
- 
   const [products, setProducts] = useState<FloorModel[]>();
   const [loading, setLoading] = React.useState(true);
   const [dataSource, setDataSource] = React.useState<any>([]);
@@ -101,7 +84,7 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
   };
 
   return (
-    <ACard sx={{ marginTop: 2, minWidth: "100%" }} >
+    <ACard sx={{ marginTop: 2, minWidth: "100%" }}>
       <ACardHeader
         title="Kat Bilgileri"
         rightTitle={DateHelper.getCurrentDate()}
@@ -117,15 +100,13 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
       <ACardContent>
         <AGrid>
           <AGridItem xs={4}>
-          <AGrid>
+            <AGrid>
               <ASearchButton
                 onClick={handleClick}
                 onChange={(e: any) => requestSearch(e.target.value)}
                 placeholder={"Ara"}
               ></ASearchButton>
             </AGrid>
-             
-           
           </AGridItem>
 
           <AGridItem xs={8} sx={{ overflow: "hidden" }}>
@@ -156,40 +137,53 @@ export default function FloorInformationCard(props: IFloorInformationCard) {
                   </ATableRow>
                 </ATableHead>
 
-                {products?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                {products
+                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
-                  <ATableBody>
-                    {search === 1 ? (
-                      <ATableRow
-                        sx={{
-                          ":hover": {
-                            backgroundColor: "#F9F9FD",
-                          },
-                        }}
-                      >
-                        <HoverStyledTableCell>{row.kat}</HoverStyledTableCell>
-                        <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
-                        <HoverStyledTableCell>{row.bilgi}</HoverStyledTableCell>
-                        <HoverStyledTableCell>{row.durum}</HoverStyledTableCell>
-                      </ATableRow>
-                    ) : row.odaNo === patientName ? (
-                      <ATableRow
-                        sx={{
-                          ":hover": {
-                            backgroundColor: "#F9F9FD",
-                          },
-                        }}
-                      >
-                        <HoverStyledTableCell>{row.kat}</HoverStyledTableCell>
-                        <HoverStyledTableCell>{row.odaNo}</HoverStyledTableCell>
-                        <HoverStyledTableCell>{row.bilgi}</HoverStyledTableCell>
-                        <HoverStyledTableCell>{row.durum}</HoverStyledTableCell>
-                      </ATableRow>
-                    ) : (
-                      <AGrid></AGrid>
-                    )}
-                  </ATableBody>
-                ))}
+                    <ATableBody>
+                      {search === 1 ? (
+                        <ATableRow
+                          sx={{
+                            ":hover": {
+                              backgroundColor: "#F9F9FD",
+                            },
+                          }}
+                        >
+                          <HoverStyledTableCell>{row.kat}</HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.odaNo}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.bilgi}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.durum}
+                          </HoverStyledTableCell>
+                        </ATableRow>
+                      ) : row.odaNo === patientName ? (
+                        <ATableRow
+                          sx={{
+                            ":hover": {
+                              backgroundColor: "#F9F9FD",
+                            },
+                          }}
+                        >
+                          <HoverStyledTableCell>{row.kat}</HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.odaNo}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.bilgi}
+                          </HoverStyledTableCell>
+                          <HoverStyledTableCell>
+                            {row.durum}
+                          </HoverStyledTableCell>
+                        </ATableRow>
+                      ) : (
+                        <AGrid></AGrid>
+                      )}
+                    </ATableBody>
+                  ))}
               </ATable>
             </ATableContainer>
             <AGridItem xs={12}>

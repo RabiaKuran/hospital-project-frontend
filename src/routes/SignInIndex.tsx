@@ -1,7 +1,8 @@
 import HomeIcon from '@mui/icons-material/Home';
-import Empty from "../pages/Empty";
+
 import HomePage from '../pages/home/HomePage';
 import SignInPage from '../pages/signIn/SignInPage';
+import ContactPage from '../pages/contact/ContactPage';
 
 export interface IRouteItem {
   path: string,
@@ -19,12 +20,12 @@ export const RouteList: IRouteItem[] = [
   },
   {
     path: "/contact-us",
-    component: <Empty />,
+    component: <ContactPage />,
     name: "Contact Us",
     roles: ["*"]
   },{
     path: "/contact-us",
-    component: <Empty />,
+    component: <ContactPage />,
     name: "Contact Us",
     roles: ["*"]
   }

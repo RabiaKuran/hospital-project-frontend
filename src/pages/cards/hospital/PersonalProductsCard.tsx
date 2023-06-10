@@ -66,7 +66,6 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
   const [count, setCount] = useState(200);
   const [expanded, setExpanded] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [more, setMore] = useState<any>();
   const [page, setPage] = useState(0);
   const [edit, setEdit] = useState<any>();
   const [productName, setProductName] = useState<any>();
@@ -170,7 +169,6 @@ export default function PersonalProductsCard(props: IPersonalProductsCard) {
     <ACard sx={{ marginTop: "12px" }}>
       <AGrid>
         <AGridItem xs={6}>
-          {" "}
           <ACardHeader title="Kişisel Ürünler" />
         </AGridItem>
         <AGridItem xs={1} sx={{ marginTop: "20px" }}>

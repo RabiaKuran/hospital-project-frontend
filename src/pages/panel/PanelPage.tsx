@@ -1,13 +1,12 @@
 import AGridItem from "../../components/grids/AGridItem";
 import AGrid from "../../components/grids/AGrid";
 import "../../components/labels/horizontalRule/horizontalRule.css";
-import './panelPage.css'
+import "./panelPage.css";
 import ANavbar from "../../components/navbars/ANavbar";
 import CustomerCard from "../cards/panel/customer/CustomerCard";
 import HospitalInferCard from "../cards/panel/hospitalInferCard/HospitalInferCard";
 
 export default function PanelPage() {
-
   return (
     <>
       <ANavbar />
@@ -15,31 +14,40 @@ export default function PanelPage() {
         sx={{
           height: "95vh",
           backgroundColor: "#FAF9F6",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <AGridItem xs={1} />
-        <AGridItem xs={5}
+        <AGridItem xs={0.75} />
+        <AGridItem
+          xs={12}
+          sm={5}
           sx={{
             display: "flex",
             alignItems: "center",
-            marginLeft: -6,
-            marginTop: 1
+            marginLeft: "auto",
+            marginRight: "auto"
           }}
         >
           <CustomerCard />
         </AGridItem>
+        <AGridItem xs={0.5}></AGridItem>
         <AGridItem
-          xs={5}
+          xs={12}
+          sm={5}
           sx={{
             display: "flex",
             alignItems: "center",
-            marginLeft: 11,
-            marginTop: 1
+            marginLeft: "auto",
+            marginRight: "auto",
+            height: "auto",
+            width: "auto"
           }}
         >
-          <HospitalInferCard/>
+          <HospitalInferCard />
         </AGridItem>
-        <AGridItem xs={1} />
+        <AGridItem xs={0.75} />
       </AGrid>
     </>
   );

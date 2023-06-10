@@ -3,7 +3,6 @@ import DashboardNavbar from "../../../components/navbars/DashboardNavbar";
 import AGrid from "../../../components/grids/AGrid";
 import ACard from "../../../components/cards/ACard";
 import AGridItem from "../../../components/grids/AGridItem";
-
 import { ColorPalette } from "../../../theme/ColorPalette";
 import { TextField, TablePagination, Typography } from "@mui/material";
 import AIconButton from "../../../components/buttons/AIconButton";
@@ -22,6 +21,9 @@ import SaveIcon from "@mui/icons-material/Save";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import Badge from "@mui/material/Badge";
 import NotificationsUpdateService from "../../../services/notifications/NotificationsUpdateService";
+import ProductUpdateService from "../../../services/products/ProductUpdateService";
+import ProductsService from "../../../services/products/ProductsService";
+import ProductsModel from "../../../models/products/ProductsModel";
 
 export interface NotificationsItem {
   id: number;
@@ -35,15 +37,26 @@ export interface NotificationsItem {
   quantity: number;
   odaNo: string;
 }
+export interface ProductsItem {
+  urunId: number;
+  urunKategori: string;
+  urunAdi: string;
+  urunAdedi: number;
+  urunBilgi: string;
+  urunTarih: string;
+  urunResmi: string;
+}
 export default function Notifications() {
   const [notifications, setNotifications] =
     useState<NotificationsGetAllModel[]>();
+  const [products, setProducts] = useState<ProductsModel>();
   const [dataSource, setDataSource] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [edit, setEdit] = useState<any>();
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [approvalCount, setApprovalCount] = useState(0);
+  const [rowQuantity, setRowQuantity] = useState(0);
   const getApprovalCount = () => {
     let count = 0;
     notifications?.forEach((row) => {
@@ -83,6 +96,20 @@ export default function Notifications() {
       });
       setDataSource(data);
       setNotifications(products);
+
+      var allProducts = await ProductsService.getProducts();
+      const dataAll: ProductsItem[] = [];
+      allProducts.forEach((item) => {
+        dataAll.push({
+          urunId: item.urunId,
+          urunKategori: item.urunKategori,
+          urunAdi: item.urunAdi,
+          urunAdedi: item.urunAdedi,
+          urunBilgi: item.urunBilgi,
+          urunTarih: item.urunTarih,
+          urunResmi: item.urunResmi,
+        });
+      });
     } catch (error) {
       alert(error);
     } finally {
@@ -114,12 +141,56 @@ export default function Notifications() {
 
   const handleSave = async (row: NotificationsItem) => {
     try {
-      const updatedRow = { ...row, durum: "Onaylandı" };
+      const updatedQuantity = row.urunAdedi - row.quantity;
+      console.log(row.urunAdedi);
+      console.log(row.quantity);
+      console.log(updatedQuantity);
+      const updatedRow = {
+        ...row,
+        urunAdedi: updatedQuantity,
+        durum: "Onaylandı",
+      };
       await NotificationsUpdateService.updateNotifications(updatedRow);
       console.log("Güncelleme başarılı!");
       setEdit(0);
+
+      setRowQuantity(updatedQuantity);
+      handleQuantitySave(row.urunId, updatedQuantity);
+
+      const updatedProduct = {
+        ...row,
+        urunId: row.urunId,
+
+        urunAdedi: updatedQuantity,
+      };
+
+      await ProductUpdateService.updateProduct(updatedProduct);
     } catch (error) {
       console.error("Güncelleme hatası:", error);
+    }
+  };
+
+  const handleQuantitySave = async (
+    urunId: number,
+    updatedQuantity: number
+  ) => {
+    try {
+      const existingProduct = await ProductsService.getProducts();
+      console.log(existingProduct);
+      const updatedProduct = existingProduct.map((product) => {
+        if (product.urunId === urunId) {
+          return {
+            ...product,
+            urunAdedi: updatedQuantity,
+          };
+        }
+        return product;
+      });
+
+      await ProductUpdateService.updateProduct(updatedProduct);
+      console.log("Ürün güncelleme başarılı!");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -127,8 +198,6 @@ export default function Notifications() {
     <>
       <DashboardNavbar />
       <AGrid sx={{ padding: 3 }}>
-        {/* 1.row */}
-
         <AGridItem xs={12} sm={12} md={12} xl={12} minHeight={750}>
           <ACard>
             <AGrid>
@@ -238,7 +307,9 @@ export default function Notifications() {
                             }}
                             key={i}
                           >
-                            <HoverStyledTableCell>
+                            <HoverStyledTableCell
+                              style={{ color: ColorPalette.blueBerry }}
+                            >
                               {row?.odaNo}
                             </HoverStyledTableCell>
                             <HoverStyledTableCell>

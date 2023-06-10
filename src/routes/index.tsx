@@ -1,4 +1,4 @@
-import Empty from "../pages/Empty";
+import ContactPage from "../pages/contact/ContactPage";
 import SignInPage from "../pages/signIn/SignInPage";
 
 export interface IRouteItem {
@@ -12,7 +12,7 @@ export interface IRouteItem {
 export const RouteList: IRouteItem[] = [
   {
     path: "/contact-us",
-    component: <Empty />,
+    component: <ContactPage />,
     name: "Contact Us",
     roles: ["*"]
   },
