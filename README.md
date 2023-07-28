@@ -80,7 +80,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ![screen10](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/4b79af6a-4bdb-4c79-8486-4aa61c8ae951)
 ![screen11](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/a0d925d4-8162-45c7-b3e1-a521f8b9a505)
 ![screen12](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/390bfd4c-13b6-442d-8996-757f8ccba625)
-![screen8](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/55878c91-e822-4964-b079-559d0d40ffc9) ![screen9](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/2545455c-e0a5-4801-adf5-c88ae9541f43)
+![screen8](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/55878c91-e822-4964-b079-559d0d40ffc9) 
+![screen9](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/2545455c-e0a5-4801-adf5-c88ae9541f43)
 
 
 
