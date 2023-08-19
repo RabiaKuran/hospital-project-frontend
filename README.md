@@ -69,6 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+
 ![image](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/010233c2-d96d-4c95-8751-33f51613dbe8)
 ![image](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/ebb50f6b-7dde-4aa9-a425-0f17f4d49fd9)
 ![image](https://github.com/RabiaKuran/hospital-project-frontend/assets/59939284/2107898f-65b3-419b-a6e5-aea05de76c3f)
